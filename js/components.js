@@ -19,7 +19,7 @@ function renderNav(activePage) {
   <nav class="nav">
     <div class="container nav-inner">
       <a href="services.html" class="nav-logo">
-        <img src="assets/logo_black.jpg" alt="Happy Sports">
+        <img src="assets/Logo+Happy+Sport-1920w.jpg" alt="Happy Sports">
       </a>
       <div class="nav-links">${links}</div>
       <div class="nav-right">
@@ -62,7 +62,7 @@ function renderFooter() {
       <div class="footer-inner">
         <div>
           <div class="footer-logo">
-            <img src="assets/logo_black.jpg" alt="Happy Sports">
+            <img src="assets/Logo+Happy+Sport-1920w.jpg" alt="Happy Sports">
           </div>
           <p class="footer-brand-desc" data-i18n="footer_desc"></p>
         </div>

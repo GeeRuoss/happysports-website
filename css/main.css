@@ -57,7 +57,7 @@ p  { color: var(--gray); line-height: 1.7; }
   gap: 2rem;
 }
 .nav-logo { display: flex; align-items: center; }
-.nav-logo img { height: 32px; width: auto; }
+.nav-logo img { height: 44px; width: auto; }
 
 .nav-links {
   display: flex; align-items: center; gap: .25rem;
@@ -490,7 +490,7 @@ p  { color: var(--gray); line-height: 1.7; }
   margin-bottom: 1.5rem;
 }
 .footer-logo { margin-bottom: .875rem; }
-.footer-logo img { height: 26px; filter: brightness(0) invert(1); }
+.footer-logo img { height: 40px; filter: invert(1); }
 .footer-brand-desc { font-size: .82rem; line-height: 1.7; }
 .footer-col h4 {
   font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
@@ -519,7 +519,7 @@ p  { color: var(--gray); line-height: 1.7; }
   width: 100%; max-width: 380px;
   box-shadow: var(--shadow-lg); text-align: center;
 }
-.admin-login-logo { height: 28px; margin: 0 auto 1.75rem; }
+.admin-login-logo { height: 40px; width: auto; margin: 0 auto 1.75rem; }
 .admin-login-card h2 { font-size: 1.2rem; margin-bottom: .25rem; }
 .admin-login-card p { font-size: .85rem; margin-bottom: 1.75rem; }
 .admin-login-card input {
@@ -537,7 +537,7 @@ p  { color: var(--gray); line-height: 1.7; }
   padding: 0 2rem; height: 58px;
   display: flex; align-items: center; justify-content: space-between;
 }
-.admin-nav-logo img { height: 24px; filter: brightness(0) invert(1); }
+.admin-nav-logo img { height: 36px; filter: invert(1); }
 .admin-nav-right { display: flex; align-items: center; gap: .75rem; }
 .admin-nav-right span { font-size: .78rem; color: rgba(255,255,255,.5); }
 .admin-btn {
