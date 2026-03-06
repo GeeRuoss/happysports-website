@@ -8,172 +8,164 @@
 </head>
 <body>
 
-<!-- ══ LOGIN ══════════════════════════════════════════════ -->
-<div class="login-page" id="login-page">
-  <div class="login-box">
-    <h2>🛠️ Admin Panel</h2>
-    <p>Happy Sports — gestion des produits et réservations</p>
-    <div class="form-group">
-      <label>Mot de passe</label>
-      <input type="password" id="login-pw" class="form-control"
-             placeholder="••••••••"
-             onkeydown="if(event.key==='Enter') doLogin()"/>
-    </div>
-    <p class="login-error" id="login-error">Mot de passe incorrect.</p>
-    <button class="btn btn-primary btn-full" onclick="doLogin()">Accéder</button>
-    <p class="login-hint">Démo : <code>admin123</code></p>
+<!-- ══ LOGIN ═════════════════════════════════════════════════ -->
+<div id="login-screen" class="admin-login">
+  <div class="admin-login-card">
+    <img src="../assets/logo_black.jpg" alt="Happy Sports" class="admin-login-logo"/>
+    <h2>Espace Admin</h2>
+    <p>Gestion des produits & réservations</p>
+    <input type="password" id="login-pw" placeholder="••••••••"
+           onkeydown="if(event.key==='Enter') doLogin()"/>
+    <button class="btn btn-primary" style="width:100%;justify-content:center" onclick="doLogin()">Se connecter</button>
+    <p class="admin-error" id="login-error">Mot de passe incorrect.</p>
+    <p style="margin-top:1.25rem;font-size:.72rem;color:var(--gray-lt)">Démo : <code>admin123</code></p>
   </div>
 </div>
 
-<!-- ══ ADMIN ══════════════════════════════════════════════ -->
-<div class="admin-layout" id="admin-layout">
+<!-- ══ APP ════════════════════════════════════════════════════ -->
+<div id="admin-app" class="admin-app">
 
-  <div class="admin-navbar">
-    <span class="admin-navbar-title">🛠️ Happy Sports — Admin</span>
-    <div style="display:flex;gap:.8rem;align-items:center">
-      <a href="../occasion.html" target="_blank" style="font-size:.78rem;color:#888;text-decoration:none">↗ Voir le site</a>
-      <button onclick="doLogout()" style="padding:6px 14px;font-size:.75rem;font-weight:700;border:1px solid #444;color:#ccc;border-radius:4px;background:transparent;cursor:pointer;font-family:inherit">Déconnexion</button>
+  <nav class="admin-nav">
+    <div class="admin-nav-logo">
+      <img src="../assets/logo_black.jpg" alt="Happy Sports"/>
     </div>
-  </div>
+    <div class="admin-nav-right">
+      <a href="../services.html" target="_blank" style="font-size:.78rem;color:rgba(255,255,255,.45);text-decoration:none">↗ Voir le site</a>
+      <button class="admin-btn admin-btn-logout" onclick="doLogout()">Déconnexion</button>
+    </div>
+  </nav>
 
   <div class="admin-body">
 
-    <!-- Summary -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;margin-bottom:2rem">
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-md);padding:1.2rem;text-align:center">
-        <div style="font-size:1.8rem;font-weight:900;color:var(--red)" id="stat-products">0</div>
-        <div style="font-size:.72rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.08em">Produits en ligne</div>
+    <!-- Stats -->
+    <div class="admin-stats">
+      <div class="admin-stat">
+        <div class="admin-stat-num" id="s-products">0</div>
+        <div class="admin-stat-label">Produits actifs</div>
       </div>
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-md);padding:1.2rem;text-align:center">
-        <div style="font-size:1.8rem;font-weight:900;color:#e65100" id="stat-reserved">0</div>
-        <div style="font-size:.72rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.08em">Réservés</div>
+      <div class="admin-stat">
+        <div class="admin-stat-num" id="s-reservations">0</div>
+        <div class="admin-stat-label">Réservations totales</div>
       </div>
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-md);padding:1.2rem;text-align:center">
-        <div style="font-size:1.8rem;font-weight:900;color:#2e7d32" id="stat-available">0</div>
-        <div style="font-size:.72rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.08em">Disponibles</div>
+      <div class="admin-stat">
+        <div class="admin-stat-num" id="s-active">0</div>
+        <div class="admin-stat-label">Réservations actives</div>
       </div>
-      <div style="background:#fff;border:1.5px solid var(--border);border-radius:var(--radius-md);padding:1.2rem;text-align:center">
-        <div style="font-size:1.8rem;font-weight:900;color:#1565c0" id="stat-reservations">0</div>
-        <div style="font-size:.72rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.08em">Réservations</div>
-      </div>
-    </div>
-
-    <!-- Tabs -->
-    <div class="admin-tabs">
-      <button class="admin-tab active" onclick="showTab('tab-products', this)">Produits</button>
-      <button class="admin-tab"        onclick="showTab('tab-add',      this)">Ajouter un produit</button>
-      <button class="admin-tab"        onclick="showTab('tab-reservations', this)">Réservations</button>
-    </div>
-
-    <!-- ── TAB: PRODUCTS ── -->
-    <div class="admin-panel active" id="tab-products">
-      <div class="admin-card">
-        <h3>Produits en ligne (<span id="product-count">0</span>)</h3>
-        <div style="overflow-x:auto">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Produit</th>
-                <th>Catégorie</th>
-                <th>Prix</th>
-                <th>Rabais</th>
-                <th>Statut</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="products-tbody"></tbody>
-          </table>
-        </div>
+      <div class="admin-stat">
+        <div class="admin-stat-num" id="s-expired">0</div>
+        <div class="admin-stat-label">Expirées</div>
       </div>
     </div>
 
-    <!-- ── TAB: ADD PRODUCT ── -->
-    <div class="admin-panel" id="tab-add">
-      <div class="admin-card">
-        <h3 id="add-form-title">Ajouter un produit</h3>
-        <input type="hidden" id="edit-id" value=""/>
+    <!-- Products panel -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3>Produits en vente (<span id="p-count">0</span>)</h3>
+        <button class="admin-btn" onclick="showAddForm()">+ Ajouter un produit</button>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Catégorie</th>
+              <th>Prix</th>
+              <th>Rabais</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="products-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add / edit product form -->
+    <div class="admin-card" id="add-form-card" style="display:none">
+      <div class="admin-card-header">
+        <h3 id="form-title">Ajouter un produit</h3>
+        <button class="admin-btn" onclick="hideAddForm()">Annuler</button>
+      </div>
+      <div class="admin-card-body">
+        <input type="hidden" id="edit-id"/>
         <div class="admin-form-grid">
-          <div class="admin-form-group">
-            <label>Nom du produit *</label>
-            <input type="text" id="p-name" placeholder="Scott Spark 940 2024"/>
+          <div class="admin-fg">
+            <label>Nom *</label>
+            <input type="text" id="p-name" placeholder="Scott Spark 940"/>
           </div>
-          <div class="admin-form-group">
+          <div class="admin-fg">
             <label>Catégorie *</label>
             <select id="p-cat">
-              <option value="velo">Vélo de route</option>
+              <option value="velo">Vélo route</option>
               <option value="vtt">VTT</option>
               <option value="ebike">E-Bike</option>
               <option value="ski">Ski</option>
-              <option value="accessoire">Accessoire</option>
+              <option value="acc">Accessoire</option>
             </select>
           </div>
-          <div class="admin-form-group">
+          <div class="admin-fg">
             <label>Prix CHF *</label>
             <input type="number" id="p-price" placeholder="1290" min="0"/>
           </div>
-          <div class="admin-form-group">
-            <label>Prix original CHF (pour afficher rabais)</label>
-            <input type="number" id="p-original" placeholder="Laisser vide si aucun rabais" min="0"/>
+          <div class="admin-fg">
+            <label>Prix original CHF (pour rabais)</label>
+            <input type="number" id="p-orig" placeholder="Laisser vide si aucun rabais" min="0"/>
           </div>
-          <div class="admin-form-group full">
-            <label>Description courte *</label>
-            <textarea id="p-desc" rows="3" placeholder="VTT full-suspension, état excellent, 1 saison..."></textarea>
+          <div class="admin-fg">
+            <label>Emoji icône</label>
+            <input type="text" id="p-emoji" value="🚲"/>
           </div>
-          <div class="admin-form-group">
-            <label>Emoji (icône d'affichage)</label>
-            <input type="text" id="p-emoji" value="🚲" placeholder="🚲 ou URL image"/>
+          <div class="admin-fg" style="display:flex;align-items:center;gap:.5rem;padding-top:1.25rem">
+            <input type="checkbox" id="p-avail" checked style="width:auto"/>
+            <label for="p-avail" style="font-size:.82rem;font-weight:600;cursor:pointer;margin:0">Disponible</label>
           </div>
-          <div class="admin-form-group" style="display:flex;align-items:center;gap:.5rem;padding-top:1.5rem">
-            <input type="checkbox" id="p-new" style="width:auto"/>
-            <label for="p-new" style="display:inline;font-size:.82rem;font-weight:600;cursor:pointer">Marquer comme "Nouveau"</label>
+          <div class="admin-fg admin-form-full">
+            <label>Description *</label>
+            <textarea id="p-desc" placeholder="État, taille, caractéristiques..."></textarea>
           </div>
         </div>
-        <div style="display:flex;gap:1rem;margin-top:1.5rem">
-          <button class="btn btn-primary" onclick="saveProduct()">💾 Enregistrer</button>
-          <button class="btn btn-outline" onclick="resetForm()">Annuler</button>
+        <div style="display:flex;gap:.875rem;margin-top:1.25rem;align-items:center">
+          <button class="btn btn-primary btn-sm" onclick="saveProduct()">Enregistrer</button>
+          <p id="form-error" style="font-size:.78rem;color:var(--red);display:none"></p>
         </div>
-        <p id="form-feedback" style="margin-top:.8rem;font-size:.8rem;color:var(--red);display:none"></p>
       </div>
     </div>
 
-    <!-- ── TAB: RESERVATIONS ── -->
-    <div class="admin-panel" id="tab-reservations">
-      <div class="admin-card">
-        <h3>Réservations</h3>
-        <div style="overflow-x:auto">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Produit</th>
-                <th>Client</th>
-                <th>E-mail</th>
-                <th>Téléphone</th>
-                <th>Réservé le</th>
-                <th>Expire le</th>
-                <th>Statut</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="reservations-tbody"></tbody>
-          </table>
-        </div>
+    <!-- Reservations panel -->
+    <div class="admin-card">
+      <div class="admin-card-header">
+        <h3>Réservations (<span id="r-count">0</span>)</h3>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Produit</th>
+              <th>Client</th>
+              <th>E-mail</th>
+              <th>Téléphone</th>
+              <th>Réservé le</th>
+              <th>Expire le</th>
+              <th>Statut</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="reservations-tbody"></tbody>
+        </table>
       </div>
     </div>
 
   </div><!-- /admin-body -->
-</div><!-- /admin-layout -->
+</div><!-- /admin-app -->
 
 <script src="../js/i18n.js"></script>
 <script src="../js/data.js"></script>
 <script>
   const ADMIN_PW = 'admin123';
 
-  // ── AUTH ───────────────────────────────────────────────────
   function doLogin() {
-    const pw = document.getElementById('login-pw').value;
-    if (pw === ADMIN_PW) {
-      document.getElementById('login-page').classList.remove('visible');
-      document.getElementById('admin-layout').classList.add('visible');
+    if (document.getElementById('login-pw').value === ADMIN_PW) {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('admin-app').style.display = 'block';
       renderAll();
     } else {
       document.getElementById('login-error').style.display = 'block';
@@ -181,80 +173,70 @@
   }
 
   function doLogout() {
-    document.getElementById('admin-layout').classList.remove('visible');
-    document.getElementById('login-page').classList.add('visible');
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('admin-app').style.display = 'none';
     document.getElementById('login-pw').value = '';
+    document.getElementById('login-error').style.display = 'none';
   }
 
-  // ── TABS ───────────────────────────────────────────────────
-  function showTab(tabId, btn) {
-    document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.admin-tab').forEach(b => b.classList.remove('active'));
-    document.getElementById(tabId).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  // ── STATS ──────────────────────────────────────────────────
   function renderStats() {
     const products = HS_DATA.getProducts();
     const reservations = HS_DATA.getReservations();
-    document.getElementById('stat-products').textContent    = products.length;
-    document.getElementById('stat-reserved').textContent    = products.filter(p => p.reserved).length;
-    document.getElementById('stat-available').textContent   = products.filter(p => !p.reserved).length;
-    document.getElementById('stat-reservations').textContent = reservations.length;
+    const active = reservations.filter(r => !HS_DATA.isExpired(r));
+    const expired = reservations.filter(r => HS_DATA.isExpired(r));
+    document.getElementById('s-products').textContent = products.length;
+    document.getElementById('s-reservations').textContent = reservations.length;
+    document.getElementById('s-active').textContent = active.length;
+    document.getElementById('s-expired').textContent = expired.length;
   }
-
-  // ── PRODUCTS TABLE ─────────────────────────────────────────
-  const CAT_LABELS = { velo:'Vélo route', vtt:'VTT', ebike:'E-Bike', ski:'Ski', accessoire:'Accessoire' };
 
   function renderProductsTable() {
     const products = HS_DATA.getProducts();
-    document.getElementById('product-count').textContent = products.length;
+    document.getElementById('p-count').textContent = products.length;
     const tbody = document.getElementById('products-tbody');
     if (!products.length) {
-      tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:2rem;color:var(--gray)">Aucun produit</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:2rem;color:var(--gray-lt)">Aucun produit</td></tr>';
       return;
     }
     tbody.innerHTML = products.map(p => {
-      const discount = p.original ? `<span class="tag tag-reserved">-${Math.round((1-p.price/p.original)*100)}%</span>` : '—';
-      return `
-        <tr>
-          <td><strong>${p.emoji || ''} ${p.name}</strong>${p.isNew ? ' <span class="tag tag-active" style="font-size:.6rem">Nouveau</span>' : ''}</td>
-          <td>${CAT_LABELS[p.cat] || p.cat}</td>
-          <td>CHF ${Number(p.price).toLocaleString('fr-CH')}.—</td>
-          <td>${discount}</td>
-          <td><span class="tag ${p.reserved ? 'tag-reserved' : 'tag-available'}">${p.reserved ? 'Réservé' : 'Disponible'}</span></td>
-          <td style="display:flex;gap:.4rem;flex-wrap:wrap">
-            <button class="btn btn-outline btn-sm" onclick="editProduct(${p.id})">Modifier</button>
-            <button class="btn btn-sm" style="border:1.5px solid #fcc;color:#c33;background:#fff" onclick="removeProduct(${p.id})">Supprimer</button>
-            ${p.reserved ? `<button class="btn btn-outline btn-sm" onclick="unReserve(${p.id})">Libérer</button>` : ''}
-          </td>
-        </tr>`;
+      const discount = p.origPrice && p.origPrice > p.price
+        ? Math.round((1 - p.price / p.origPrice) * 100) + '%'
+        : '—';
+      return `<tr>
+        <td><strong>${p.emoji || ''} ${p.name}</strong></td>
+        <td>${HS_DATA.catLabel(p.cat)}</td>
+        <td>${HS_DATA.formatPrice(p.price)}</td>
+        <td>${discount !== '—' ? `<span style="font-size:.72rem;font-weight:700;color:var(--red)">–${discount}</span>` : '—'}</td>
+        <td style="display:flex;gap:.5rem">
+          <button class="admin-btn" onclick="editProduct('${p.id}')">Modifier</button>
+          <button class="btn-del" onclick="removeProduct('${p.id}')">Supprimer</button>
+        </td>
+      </tr>`;
     }).join('');
   }
 
-  // ── RESERVATIONS TABLE ─────────────────────────────────────
   function renderReservationsTable() {
-    const today = new Date().toISOString().split('T')[0];
     const reservations = HS_DATA.getReservations();
+    const products = HS_DATA.getProducts();
+    document.getElementById('r-count').textContent = reservations.length;
     const tbody = document.getElementById('reservations-tbody');
     if (!reservations.length) {
-      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--gray)">Aucune réservation</td></tr>';
+      tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:2rem;color:var(--gray-lt)">Aucune réservation</td></tr>';
       return;
     }
     tbody.innerHTML = reservations.map(r => {
-      const expired = r.expires < today;
-      return `
-        <tr>
-          <td><strong>${r.productName}</strong></td>
-          <td>${r.client}</td>
-          <td><a href="mailto:${r.email}" style="color:var(--red)">${r.email}</a></td>
-          <td><a href="tel:${r.phone}">${r.phone}</a></td>
-          <td>${r.date}</td>
-          <td style="${expired ? 'color:var(--red)' : ''}">${r.expires}</td>
-          <td><span class="tag ${expired ? 'tag-expired' : 'tag-reserved'}">${expired ? 'Expirée' : 'Active'}</span></td>
-          <td><button class="btn btn-sm" style="border:1.5px solid #fcc;color:#c33;background:#fff" onclick="deleteReservation(${r.id})">Supprimer</button></td>
-        </tr>`;
+      const p = products.find(x => x.id === r.productId);
+      const expired = HS_DATA.isExpired(r);
+      return `<tr>
+        <td><strong>${p ? p.name : r.productId}</strong></td>
+        <td>${r.customer.name}</td>
+        <td><a href="mailto:${r.customer.email}" style="color:var(--red)">${r.customer.email}</a></td>
+        <td><a href="tel:${r.customer.phone}">${r.customer.phone}</a></td>
+        <td>${HS_DATA.formatDate(r.createdAt)}</td>
+        <td>${HS_DATA.formatDate(r.expiresAt)}</td>
+        <td><span class="${expired ? 'badge-expired' : 'badge-active'}">${expired ? 'Expirée' : 'Active'}</span></td>
+        <td><button class="btn-del" onclick="removeReservation('${r.id}')">Supprimer</button></td>
+      </tr>`;
     }).join('');
   }
 
@@ -264,94 +246,91 @@
     renderReservationsTable();
   }
 
-  // ── PRODUCT CRUD ───────────────────────────────────────────
+  /* ── Add / Edit form ── */
+  function showAddForm() {
+    resetForm();
+    document.getElementById('add-form-card').style.display = 'block';
+    document.getElementById('add-form-card').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function hideAddForm() {
+    document.getElementById('add-form-card').style.display = 'none';
+    resetForm();
+  }
+
   function resetForm() {
-    document.getElementById('edit-id').value  = '';
-    document.getElementById('p-name').value   = '';
-    document.getElementById('p-price').value  = '';
-    document.getElementById('p-original').value = '';
-    document.getElementById('p-desc').value   = '';
-    document.getElementById('p-emoji').value  = '🚲';
-    document.getElementById('p-new').checked  = false;
-    document.getElementById('p-cat').value    = 'velo';
-    document.getElementById('add-form-title').textContent = 'Ajouter un produit';
-    document.getElementById('form-feedback').style.display = 'none';
+    document.getElementById('edit-id').value = '';
+    document.getElementById('p-name').value = '';
+    document.getElementById('p-cat').value = 'velo';
+    document.getElementById('p-price').value = '';
+    document.getElementById('p-orig').value = '';
+    document.getElementById('p-desc').value = '';
+    document.getElementById('p-emoji').value = '🚲';
+    document.getElementById('p-avail').checked = true;
+    document.getElementById('form-title').textContent = 'Ajouter un produit';
+    document.getElementById('form-error').style.display = 'none';
   }
 
   function editProduct(id) {
     const p = HS_DATA.getProducts().find(x => x.id === id);
     if (!p) return;
-    document.getElementById('edit-id').value    = p.id;
-    document.getElementById('p-name').value     = p.name;
-    document.getElementById('p-price').value    = p.price;
-    document.getElementById('p-original').value = p.original || '';
-    document.getElementById('p-desc').value     = p.desc;
-    document.getElementById('p-emoji').value    = p.emoji || '🚲';
-    document.getElementById('p-new').checked    = !!p.isNew;
-    document.getElementById('p-cat').value      = p.cat;
-    document.getElementById('add-form-title').textContent = 'Modifier le produit';
-    showTab('tab-add', document.querySelectorAll('.admin-tab')[1]);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    document.getElementById('edit-id').value = p.id;
+    document.getElementById('p-name').value = p.name;
+    document.getElementById('p-cat').value = p.cat;
+    document.getElementById('p-price').value = p.price;
+    document.getElementById('p-orig').value = p.origPrice || '';
+    document.getElementById('p-desc').value = p.desc;
+    document.getElementById('p-emoji').value = p.emoji || '🚲';
+    document.getElementById('p-avail').checked = !!p.available;
+    document.getElementById('form-title').textContent = 'Modifier le produit';
+    document.getElementById('add-form-card').style.display = 'block';
+    document.getElementById('add-form-card').scrollIntoView({ behavior: 'smooth' });
   }
 
   function saveProduct() {
     const name  = document.getElementById('p-name').value.trim();
     const price = parseFloat(document.getElementById('p-price').value);
     const desc  = document.getElementById('p-desc').value.trim();
-    const fb    = document.getElementById('form-feedback');
+    const errEl = document.getElementById('form-error');
 
     if (!name || isNaN(price) || !desc) {
-      fb.textContent = 'Nom, prix et description sont obligatoires.';
-      fb.style.display = 'block'; return;
+      errEl.textContent = 'Nom, prix et description sont obligatoires.';
+      errEl.style.display = 'block';
+      return;
     }
-    fb.style.display = 'none';
+    errEl.style.display = 'none';
 
-    const original = parseFloat(document.getElementById('p-original').value) || null;
-    const cat   = document.getElementById('p-cat').value;
-    const emoji = document.getElementById('p-emoji').value.trim() || '🚲';
-    const isNew = document.getElementById('p-new').checked;
-    const editId = parseInt(document.getElementById('edit-id').value);
+    const cat      = document.getElementById('p-cat').value;
+    const origPrice= parseFloat(document.getElementById('p-orig').value) || null;
+    const emoji    = document.getElementById('p-emoji').value.trim() || '🚲';
+    const available= document.getElementById('p-avail').checked;
+    const editId   = document.getElementById('edit-id').value;
 
     if (editId) {
       const products = HS_DATA.getProducts();
-      const idx = products.findIndex(p => p.id === editId);
+      const idx = products.findIndex(x => x.id === editId);
       if (idx !== -1) {
-        products[idx] = { ...products[idx], name, cat, price, original, desc, emoji, isNew };
+        products[idx] = { ...products[idx], name, cat, price, origPrice, desc, emoji, available };
         HS_DATA.saveProducts(products);
       }
     } else {
-      HS_DATA.addProduct({ name, cat, price, original, desc, emoji, isNew });
+      HS_DATA.addProduct({ name, cat, price, origPrice, desc, emoji, available });
     }
-
-    resetForm();
-    showTab('tab-products', document.querySelectorAll('.admin-tab')[0]);
+    hideAddForm();
     renderAll();
   }
 
   function removeProduct(id) {
-    if (!confirm('Supprimer ce produit définitivement ?')) return;
+    if (!confirm('Supprimer ce produit ?')) return;
     HS_DATA.deleteProduct(id);
     renderAll();
   }
 
-  function unReserve(id) {
-    const products = HS_DATA.getProducts();
-    const p = products.find(x => x.id === id);
-    if (p) { p.reserved = false; HS_DATA.saveProducts(products); }
-    renderAll();
-  }
-
-  function deleteReservation(id) {
+  function removeReservation(id) {
     if (!confirm('Supprimer cette réservation ?')) return;
-    const reservations = HS_DATA.getReservations().filter(r => r.id !== id);
-    HS_DATA.saveReservations(reservations);
+    HS_DATA.deleteReservation(id);
     renderAll();
   }
-
-  // ── INIT ──────────────────────────────────────────────────
-  window.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('login-page').classList.add('visible');
-  });
 </script>
 </body>
 </html>

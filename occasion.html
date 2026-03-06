@@ -3,80 +3,80 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Occasion & Vente – Happy Sports</title>
-  <meta name="description" content="Vélos, skis et équipements à vendre chez Happy Sports. Réservez en ligne, venez voir en magasin dans les 5 jours."/>
+  <title>Occasion – Happy Sports</title>
+  <meta name="description" content="Vélos et équipements d'occasion révisés – Happy Sports Le Châble Verbier"/>
   <link rel="stylesheet" href="css/main.css"/>
 </head>
 <body data-page="occasion">
 
-  <div id="site-header"></div>
+  <div id="site-nav"></div>
 
-  <!-- PAGE HEADER -->
-  <div class="page-header">
-    <div class="page-header-inner">
-      <span class="page-header-eyebrow" data-i18n="occasion_tag"></span>
-      <h1 data-i18n="occasion_title"></h1>
-      <p data-i18n="occasion_sub"></p>
-    </div>
-  </div>
-
-  <!-- INFO STRIP -->
-  <div id="info-strip-container"></div>
-
-  <!-- PRODUCTS SECTION -->
-  <section class="section">
-    <div class="container">
-      <div class="filter-bar" id="filter-bar">
-        <button class="filter-btn active" data-filter="all"         onclick="filterProducts('all',this)"         data-i18n="filter_all"></button>
-        <button class="filter-btn"         data-filter="velo"        onclick="filterProducts('velo',this)"        data-i18n="filter_bike"></button>
-        <button class="filter-btn"         data-filter="vtt"         onclick="filterProducts('vtt',this)"         data-i18n="filter_vtt"></button>
-        <button class="filter-btn"         data-filter="ebike"       onclick="filterProducts('ebike',this)"       data-i18n="filter_ebike"></button>
-        <button class="filter-btn"         data-filter="ski"         onclick="filterProducts('ski',this)"         data-i18n="filter_ski"></button>
-        <button class="filter-btn"         data-filter="accessoire"  onclick="filterProducts('accessoire',this)"  data-i18n="filter_acc"></button>
-      </div>
-
-      <div class="product-grid" id="product-grid"></div>
-      <p id="no-results" style="display:none;color:var(--gray);text-align:center;padding:3rem 0;" data-i18n="no_results"></p>
+  <!-- Page hero -->
+  <section class="page-hero">
+    <div class="container page-hero-inner">
+      <span class="eyebrow" data-i18n="occ_tag"></span>
+      <h1 data-i18n="occ_title"></h1>
+      <p data-i18n="occ_sub"></p>
     </div>
   </section>
 
-  <!-- RESERVATION MODAL -->
-  <div class="modal-overlay" id="reserve-modal">
-    <div class="modal">
-      <button class="modal-close" onclick="closeModal()">✕</button>
+  <div id="info-strip"></div>
 
-      <!-- Form -->
-      <div id="modal-form">
-        <h2 class="modal-title" data-i18n="modal_title"></h2>
-        <p class="modal-product" id="modal-product-label"></p>
-        <div class="modal-info-box">
-          <strong data-i18n="modal_info_title"></strong><br/>
-          <span data-i18n="modal_info_text"></span>
-        </div>
-        <div class="form-group">
-          <label data-i18n="form_name"></label>
-          <input type="text"  id="r-name"  class="form-control" data-i18n-ph="form_name_ph"/>
-          <span class="form-error">Champ requis</span>
-        </div>
-        <div class="form-group">
-          <label data-i18n="form_email"></label>
-          <input type="email" id="r-email" class="form-control" data-i18n-ph="form_email_ph"/>
-          <span class="form-error">E-mail invalide</span>
-        </div>
-        <div class="form-group">
-          <label data-i18n="form_phone"></label>
-          <input type="tel"   id="r-phone" class="form-control" data-i18n-ph="form_phone_ph"/>
-          <span class="form-error">Champ requis</span>
-        </div>
-        <button class="btn btn-primary btn-full" onclick="submitReservation()" data-i18n="form_submit"></button>
+  <!-- Products section -->
+  <section class="section">
+    <div class="container">
+
+      <!-- Filters -->
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-cat="all" data-i18n="filter_all"></button>
+        <button class="filter-btn" data-cat="velo" data-i18n="filter_velo"></button>
+        <button class="filter-btn" data-cat="vtt" data-i18n="filter_vtt"></button>
+        <button class="filter-btn" data-cat="ebike" data-i18n="filter_ebike"></button>
+        <button class="filter-btn" data-cat="ski" data-i18n="filter_ski"></button>
+        <button class="filter-btn" data-cat="acc" data-i18n="filter_acc"></button>
       </div>
 
-      <!-- Success -->
-      <div id="modal-success" class="modal-success" style="display:none">
-        <div class="success-icon">✅</div>
-        <h3 data-i18n="success_title"></h3>
-        <p data-i18n="success_text"></p>
-        <button class="btn btn-outline" style="margin-top:1.5rem" onclick="closeModal()">Fermer</button>
+      <!-- Grid -->
+      <div class="products-grid" id="products-grid"></div>
+
+    </div>
+  </section>
+
+  <!-- Reservation modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div id="modal-form-view">
+        <div class="modal-header">
+          <h3 data-i18n="modal_title"></h3>
+          <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div class="modal-product-info" id="modal-product-info"></div>
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label data-i18n="modal_name"></label>
+              <input type="text" id="f-name" autocomplete="name"/>
+            </div>
+            <div class="form-group">
+              <label data-i18n="modal_phone"></label>
+              <input type="tel" id="f-phone" autocomplete="tel"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label data-i18n="modal_email"></label>
+            <input type="email" id="f-email" autocomplete="email"/>
+          </div>
+          <div class="modal-notice" data-i18n="modal_notice"></div>
+          <button class="btn-submit" id="btn-submit" onclick="submitReservation()" data-i18n="modal_submit"></button>
+        </div>
+      </div>
+      <div id="modal-success-view" style="display:none">
+        <div class="modal-success">
+          <div class="modal-success-icon">✅</div>
+          <h3 data-i18n="modal_success_title"></h3>
+          <p data-i18n="modal_success_text"></p>
+          <button class="modal-success-close" onclick="closeModal()" data-i18n="modal_close_btn"></button>
+        </div>
       </div>
     </div>
   </div>
@@ -87,128 +87,123 @@
   <script src="js/data.js"></script>
   <script src="js/components.js"></script>
   <script>
+    let currentProductId = null;
     let currentFilter = 'all';
-    let selectedProductId = null;
 
-    // ── Category label ──────────────────────────────────────
-    function catLabel(cat) {
-      const map = { velo:'cat_velo', vtt:'cat_vtt', ebike:'cat_ebike', ski:'cat_ski', accessoire:'cat_accessoire' };
-      return t(map[cat] || cat);
-    }
-
-    // ── Render products ─────────────────────────────────────
     function renderProducts(filter) {
-      currentFilter = filter;
-      const products = HS_DATA.getProducts();
-      const list = filter === 'all' ? products : products.filter(p => p.cat === filter);
-      const grid = document.getElementById('product-grid');
-      const noRes = document.getElementById('no-results');
+      const grid = document.getElementById('products-grid');
+      const products = HS_DATA.getProducts().filter(p => p.available);
+      const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
 
-      if (!list.length) {
-        grid.innerHTML = '';
-        noRes.style.display = 'block';
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="products-empty"><div class="products-empty-icon">🔍</div><p>Aucun article dans cette catégorie pour le moment.</p></div>`;
         return;
       }
-      noRes.style.display = 'none';
 
-      grid.innerHTML = list.map(p => {
-        const discount = p.original ? Math.round((1 - p.price / p.original) * 100) : 0;
-        const savings  = p.original ? p.original - p.price : 0;
+      grid.innerHTML = filtered.map(p => {
+        const discount = p.origPrice ? Math.round((1 - p.price / p.origPrice) * 100) : 0;
         return `
-          <div class="product-card ${p.reserved ? 'is-reserved' : ''}">
-            <div class="product-img">
-              <span>${p.emoji || '🚲'}</span>
-              ${discount > 0 ? `<span class="badge badge-discount">-${discount}%</span>` : ''}
-              ${p.isNew    ? `<span class="badge badge-new" data-i18n="badge_new">${t('badge_new')}</span>` : ''}
-              ${p.reserved ? `<span class="badge badge-reserved">${t('btn_reserved')}</span>` : ''}
+        <div class="product-card">
+          <div class="product-img">${p.emoji || '🏷️'}</div>
+          <div class="product-body">
+            <div class="product-cat">${HS_DATA.catLabel(p.cat)}</div>
+            <div class="product-name">${p.name}</div>
+            <div class="product-desc">${p.desc}</div>
+            <div class="product-price-row">
+              <span class="product-price">${HS_DATA.formatPrice(p.price)}</span>
+              ${p.origPrice && p.origPrice > p.price ? `<span class="product-price-orig">${HS_DATA.formatPrice(p.origPrice)}</span>` : ''}
+              ${discount > 0 ? `<span class="product-badge">–${discount}%</span>` : ''}
             </div>
-            <div class="product-body">
-              <div class="product-cat">${catLabel(p.cat)}</div>
-              <div class="product-name">${p.name}</div>
-              <div class="product-desc">${p.desc}</div>
-              <div class="product-price">
-                <span class="price-current">CHF ${p.price.toLocaleString('fr-CH')}.—</span>
-                ${p.original ? `<span class="price-original">CHF ${p.original.toLocaleString('fr-CH')}.—</span>
-                  <span class="price-saving">–CHF ${savings.toLocaleString('fr-CH')}</span>` : ''}
-              </div>
-              ${p.reserved
-                ? `<button class="btn-reserved">${t('btn_reserved')}</button>`
-                : `<button class="btn-reserve" onclick="openModal(${p.id})">${t('btn_reserve')}</button>`
-              }
-            </div>
-          </div>`;
+          </div>
+          <div class="product-footer">
+            <button class="btn-book" onclick="openModal('${p.id}')" data-i18n="reserve_btn">${t('reserve_btn')}</button>
+          </div>
+        </div>`;
       }).join('');
     }
 
-    // ── Filter ──────────────────────────────────────────────
-    function filterProducts(filter, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
-      renderProducts(filter);
+    function setFilter(cat) {
+      currentFilter = cat;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.cat === cat);
+      });
+      renderProducts(cat);
     }
 
-    // ── Modal ───────────────────────────────────────────────
-    function openModal(id) {
-      selectedProductId = id;
-      const p = HS_DATA.getProducts().find(x => x.id === id);
-      document.getElementById('modal-product-label').textContent =
-        `${p.name} — CHF ${p.price.toLocaleString('fr-CH')}.—`;
-      document.getElementById('modal-form').style.display = '';
-      document.getElementById('modal-success').style.display = 'none';
-      document.getElementById('r-name').value  = '';
-      document.getElementById('r-email').value = '';
-      document.getElementById('r-phone').value = '';
-      document.querySelectorAll('.form-control').forEach(el => el.classList.remove('error'));
-      document.getElementById('reserve-modal').classList.add('open');
+    function openModal(productId) {
+      currentProductId = productId;
+      const p = HS_DATA.getProducts().find(x => x.id === productId);
+      if (!p) return;
+      document.getElementById('modal-product-info').innerHTML = `
+        <div class="modal-product-icon">${p.emoji || '🏷️'}</div>
+        <div>
+          <div class="modal-product-name">${p.name}</div>
+          <div class="modal-product-price">${HS_DATA.formatPrice(p.price)}</div>
+        </div>
+      `;
+      document.getElementById('modal-form-view').style.display = 'block';
+      document.getElementById('modal-success-view').style.display = 'none';
+      ['f-name','f-phone','f-email'].forEach(id => {
+        const el = document.getElementById(id);
+        el.value = '';
+        el.classList.remove('input-error');
+      });
+      document.getElementById('modal-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('f-name').focus();
     }
 
     function closeModal() {
-      document.getElementById('reserve-modal').classList.remove('open');
-      selectedProductId = null;
+      document.getElementById('modal-overlay').classList.remove('open');
+      document.body.style.overflow = '';
+      currentProductId = null;
     }
 
-    document.addEventListener('click', e => {
-      if (e.target === document.getElementById('reserve-modal')) closeModal();
-    });
-
-    // ── Submit ──────────────────────────────────────────────
     function submitReservation() {
-      const name  = document.getElementById('r-name').value.trim();
-      const email = document.getElementById('r-email').value.trim();
-      const phone = document.getElementById('r-phone').value.trim();
+      const name  = document.getElementById('f-name').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      const email = document.getElementById('f-email').value.trim();
       let valid = true;
-
-      [['r-name', name], ['r-email', email], ['r-phone', phone]].forEach(([id, val]) => {
+      [['f-name', name], ['f-phone', phone], ['f-email', email]].forEach(([id, val]) => {
         const el = document.getElementById(id);
-        if (!val) { el.classList.add('error'); valid = false; }
-        else el.classList.remove('error');
+        if (!val) { el.classList.add('input-error'); valid = false; }
+        else el.classList.remove('input-error');
       });
-
+      if (!email.includes('@')) {
+        document.getElementById('f-email').classList.add('input-error');
+        valid = false;
+      }
       if (!valid) return;
 
-      const today   = new Date();
-      const todayStr = HS_DATA.formatDate(today);
+      const btn = document.getElementById('btn-submit');
+      btn.disabled = true;
+      btn.textContent = '…';
 
-      HS_DATA.addReservation({
-        productId:   selectedProductId,
-        productName: HS_DATA.getProducts().find(p => p.id === selectedProductId)?.name || '',
-        client: name, email, phone,
-        date:    todayStr,
-        expires: HS_DATA.expiryDate(todayStr, 5)
-      });
-
-      document.getElementById('modal-form').style.display = 'none';
-      document.getElementById('modal-success').style.display = 'block';
-      renderProducts(currentFilter);
+      setTimeout(() => {
+        HS_DATA.addReservation(currentProductId, { name, email, phone });
+        document.getElementById('modal-form-view').style.display = 'none';
+        document.getElementById('modal-success-view').style.display = 'block';
+        btn.disabled = false;
+        applyI18n();
+      }, 600);
     }
 
-    // ── Init ─────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
-      const strip = document.getElementById('info-strip-container');
-      if (strip) strip.innerHTML = renderInfoStrip();
-      applyI18n();
-      renderProducts('all');
+    /* Filter button clicks */
+    document.getElementById('filters').addEventListener('click', e => {
+      const btn = e.target.closest('.filter-btn');
+      if (btn) setFilter(btn.dataset.cat);
     });
+
+    /* Close on overlay click */
+    document.getElementById('modal-overlay').addEventListener('click', e => {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    });
+
+    /* ESC key */
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    /* Initial render */
+    renderProducts('all');
   </script>
 </body>
 </html>

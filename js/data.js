@@ -1,144 +1,76 @@
-/* ═══════════════════════════════════════════════════════════
-   HAPPY SPORTS — Data Store (Products & Reservations)
-   Uses localStorage for persistence across pages
-   ═══════════════════════════════════════════════════════════ */
+/* ============================================================
+   Happy Sports — Data Store (Products & Reservations)
+   localStorage-based persistence
+   ============================================================ */
 
-const HS_DATA = {
+const HS_DEFAULTS = [
+  {
+    id: 'p1', cat: 'velo',
+    emoji: '🚴',
+    name: 'Scott Speedster 50',
+    desc: 'Vélo de route aluminium. Groupe Shimano Claris 16v. Taille M.',
+    price: 690, origPrice: 990,
+    available: true
+  },
+  {
+    id: 'p2', cat: 'vtt',
+    emoji: '🚵',
+    name: 'Scott Spark 940',
+    desc: 'VTT tout-suspendu carbone. Fox suspension. Taille L.',
+    price: 2490, origPrice: 3200,
+    available: true
+  },
+  {
+    id: 'p3', cat: 'ebike',
+    emoji: '⚡',
+    name: 'Scott Patron E-Ride 920',
+    desc: 'E-MTB Bosch Performance CX 800Wh. Taille M/L.',
+    price: 4999, origPrice: 6499,
+    available: true
+  },
+  {
+    id: 'p4', cat: 'velo',
+    emoji: '🚴',
+    name: 'BMC Roadmachine 01',
+    desc: 'Vélo de route carbone. Groupe Shimano Ultegra Di2. Taille S.',
+    price: 3200, origPrice: 4800,
+    available: true
+  },
+  {
+    id: 'p5', cat: 'ski',
+    emoji: '🎿',
+    name: 'Völkl Racetiger SL',
+    desc: 'Ski de slalom homologué. Longueur 165cm. Fixations incluses.',
+    price: 480, origPrice: 750,
+    available: true
+  },
+  {
+    id: 'p6', cat: 'acc',
+    emoji: '⛑️',
+    name: 'Fox Proframe RS',
+    desc: 'Casque enduro intégral. Taille M. Couleur noir mat.',
+    price: 190, origPrice: 320,
+    available: true
+  },
+];
 
-  // ── Default products (loaded once if localStorage is empty) ──
-  defaultProducts: [
-    {
-      id: 1,
-      name: 'Scott Spark 940 2023',
-      cat: 'vtt',
-      price: 2490,
-      original: 3200,
-      desc: 'VTT full suspension 29", Shimano Deore 12v, fourche Fox. État excellent, 1 saison.',
-      emoji: '🚵',
-      isNew: false,
-      reserved: false
-    },
-    {
-      id: 2,
-      name: 'Scott Speedster 50 2024',
-      cat: 'velo',
-      price: 1590,
-      original: null,
-      desc: 'Vélo de route aluminium, Shimano Tiagra 20v, cadre léger. Neuf, dernier exemplaire.',
-      emoji: '🚴',
-      isNew: true,
-      reserved: false
-    },
-    {
-      id: 3,
-      name: 'Scott Patron eRIDE 920 2025',
-      cat: 'ebike',
-      price: 5999,
-      original: null,
-      desc: 'E-MTB avec batterie 800Wh Bosch. Autonomie 120km+. Bonus communal Bagnes -400.-',
-      emoji: '⚡',
-      isNew: true,
-      reserved: false
-    },
-    {
-      id: 4,
-      name: 'BMC Roadmachine 01 2023',
-      cat: 'velo',
-      price: 3800,
-      original: 5200,
-      desc: 'Vélo d\'endurance carbone, Shimano Ultegra Di2, roues carbon. Parfait état.',
-      emoji: '🏁',
-      isNew: false,
-      reserved: false
-    },
-    {
-      id: 5,
-      name: 'SCOR 4060 LT 2024',
-      cat: 'vtt',
-      price: 3100,
-      original: null,
-      desc: 'VTT trail 29", carbone, SRAM GX Eagle 12v, fourche Fox 36. Neuf.',
-      emoji: '⛰️',
-      isNew: true,
-      reserved: false
-    },
-    {
-      id: 6,
-      name: 'Völkl Blaze 94 + Fix. Look',
-      cat: 'ski',
-      price: 420,
-      original: 680,
-      desc: 'Ski freeride/rando 170cm + fixations Look. Très bon état, 2 saisons.',
-      emoji: '🎿',
-      isNew: false,
-      reserved: true
-    },
-    {
-      id: 7,
-      name: 'Casque Fox Speedframe Pro',
-      cat: 'accessoire',
-      price: 79,
-      original: 115,
-      desc: 'Casque VTT MIPS, taille M/L, coloris noir mat. Jamais utilisé.',
-      emoji: '⛑️',
-      isNew: false,
-      reserved: false
-    },
-    {
-      id: 8,
-      name: 'Scott Genius 910 2022',
-      cat: 'vtt',
-      price: 2100,
-      original: 2800,
-      desc: 'VTT enduro full-susp 29", Shimano XT 12v, Fox Float 36. 2 saisons, TBE.',
-      emoji: '🏔️',
-      isNew: false,
-      reserved: false
-    },
-  ],
-
-  // ── Default reservations ──
-  defaultReservations: [
-    {
-      id: 1,
-      productId: 6,
-      productName: 'Völkl Blaze 94 + Fix. Look',
-      client: 'Marie Fontaine',
-      email: 'marie@exemple.ch',
-      phone: '+41 78 123 45 67',
-      date: '2025-03-01',
-      expires: '2025-03-06'
-    }
-  ],
-
-  // ── Load from localStorage or use defaults ──
+/* ── API ───────────────────────────────────────────────────── */
+window.HS_DATA = {
   getProducts() {
-    const stored = localStorage.getItem('hs_products');
-    if (stored) return JSON.parse(stored);
-    this.saveProducts(this.defaultProducts);
-    return this.defaultProducts;
+    try {
+      const stored = localStorage.getItem('hs_products');
+      return stored ? JSON.parse(stored) : HS_DEFAULTS;
+    } catch { return HS_DEFAULTS; }
   },
 
   saveProducts(products) {
     localStorage.setItem('hs_products', JSON.stringify(products));
   },
 
-  getReservations() {
-    const stored = localStorage.getItem('hs_reservations');
-    if (stored) return JSON.parse(stored);
-    this.saveReservations(this.defaultReservations);
-    return this.defaultReservations;
-  },
-
-  saveReservations(reservations) {
-    localStorage.setItem('hs_reservations', JSON.stringify(reservations));
-  },
-
   addProduct(product) {
     const products = this.getProducts();
-    const maxId = products.reduce((m, p) => Math.max(m, p.id), 0);
-    product.id = maxId + 1;
-    product.reserved = false;
+    product.id = 'p' + Date.now();
+    product.available = true;
     products.push(product);
     this.saveProducts(products);
     return product;
@@ -149,36 +81,49 @@ const HS_DATA = {
     this.saveProducts(products);
   },
 
-  addReservation(reservation) {
+  getReservations() {
+    try {
+      return JSON.parse(localStorage.getItem('hs_reservations') || '[]');
+    } catch { return []; }
+  },
+
+  addReservation(productId, customer) {
     const reservations = this.getReservations();
-    const products = this.getProducts();
-    const maxId = reservations.reduce((m, r) => Math.max(m, r.id), 0);
-    reservation.id = maxId + 1;
-
-    // Mark product as reserved
-    const p = products.find(p => p.id === reservation.productId);
-    if (p) {
-      p.reserved = true;
-      this.saveProducts(products);
-    }
-
-    reservations.push(reservation);
-    this.saveReservations(reservations);
-    return reservation;
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + 5);
+    const res = {
+      id: 'r' + Date.now(),
+      productId,
+      customer, /* { name, email, phone } */
+      createdAt: new Date().toISOString(),
+      expiresAt: expiry.toISOString(),
+    };
+    reservations.push(res);
+    localStorage.setItem('hs_reservations', JSON.stringify(reservations));
+    return res;
   },
 
-  getNextId() {
-    const products = this.getProducts();
-    return products.reduce((m, p) => Math.max(m, p.id), 0) + 1;
+  deleteReservation(id) {
+    const reservations = this.getReservations().filter(r => r.id !== id);
+    localStorage.setItem('hs_reservations', JSON.stringify(reservations));
   },
 
-  formatDate(date) {
-    return date.toISOString().split('T')[0];
+  isExpired(res) {
+    return new Date(res.expiresAt) < new Date();
   },
 
-  expiryDate(fromDate, days = 5) {
-    const d = new Date(fromDate);
-    d.setDate(d.getDate() + days);
-    return this.formatDate(d);
+  formatDate(iso) {
+    return new Date(iso).toLocaleDateString('fr-CH', {
+      day: '2-digit', month: '2-digit', year: '2-digit'
+    });
+  },
+
+  formatPrice(n) {
+    return 'CHF ' + Number(n).toLocaleString('fr-CH');
+  },
+
+  catLabel(cat) {
+    const map = { velo: 'Vélo route', vtt: 'VTT', ebike: 'E-Bike', ski: 'Ski', acc: 'Accessoire' };
+    return map[cat] || cat;
   }
 };

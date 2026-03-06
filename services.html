@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Sports – Services</title>
+  <meta name="description" content="Vélos Scott, BMC, SCOR · Ski · Location · Service & Réparation – Happy Sports Le Châble Verbier"/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="services">
+
+  <div id="site-nav"></div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-eyebrow" data-i18n="hero_tag"></span>
+        <h1 data-i18n="hero_title"></h1>
+        <p data-i18n="hero_sub"></p>
+        <div class="hero-actions">
+          <a href="occasion.html" class="btn btn-primary btn-lg" data-i18n="hero_btn1"></a>
+          <a href="contact.html" class="btn btn-outline btn-lg" data-i18n="hero_btn2"></a>
+        </div>
+      </div>
+      <div class="hero-logo-deco" aria-hidden="true">
+        <img src="assets/logo_black.jpg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <div id="info-strip"></div>
+
+  <!-- Services content -->
+  <section class="section">
+    <div class="container">
+
+      <div class="section-header">
+        <span class="eyebrow" data-i18n="services_tag"></span>
+        <h2 data-i18n="services_title"></h2>
+        <p data-i18n="services_sub"></p>
+      </div>
+
+      <!-- Tab nav -->
+      <div class="tab-nav" role="tablist">
+        <button class="tab-btn active" onclick="showTab('velos')" data-i18n="tab_velos"></button>
+        <button class="tab-btn" onclick="showTab('ski')" data-i18n="tab_ski"></button>
+        <button class="tab-btn" onclick="showTab('location')" data-i18n="tab_location"></button>
+        <button class="tab-btn" onclick="showTab('service')" data-i18n="tab_service"></button>
+      </div>
+
+      <!-- Vélos -->
+      <div class="tab-panel active" id="tab-velos">
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="service-card-icon">🚴</div>
+            <h3>Scott Bikes</h3>
+            <p>Partenaire Scott depuis plus de 30 ans. Large gamme de vélos de route, VTT et gravel disponible en magasin.</p>
+            <span class="service-badge">30+ ans</span>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">⚡</div>
+            <h3>Scott E-Bikes</h3>
+            <p>Scott Patron E-Ride 800Wh dès CHF 5'999.– Bonus Bagnes CHF 400.– disponible. L'assistance électrique parfaite pour Verbier.</p>
+            <span class="service-badge">Bonus CHF 400.–</span>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🏔️</div>
+            <h3>BMC Switzerland</h3>
+            <p>Vélos BMC de haute gamme – route, gravel et montagne. Gamme 2025 disponible à la commande.</p>
+            <span class="service-badge">Nouveauté 2025</span>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🚵</div>
+            <h3>SCOR</h3>
+            <p>SCOR, la marque enduro des Alpes. Géométrie agressive, composants haut de gamme. Gamme 2025 en magasin.</p>
+            <span class="service-badge">Nouveauté 2025</span>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🔩</div>
+            <h3>Accessoires & équipements</h3>
+            <p>Casques, chaussures vélo, vêtements techniques, nutrition sportive et tous les accessoires pour rouler au top.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🛒</div>
+            <h3>Sport 2000</h3>
+            <p>En tant que partenaire Sport 2000, accès à une large sélection de marques sportives à prix compétitifs.</p>
+            <span class="service-badge">Partenaire officiel</span>
+          </div>
+        </div>
+        <p style="margin-top:2rem;font-size:.85rem;color:var(--gray)">📞 Consultez-nous pour la disponibilité et les prix — <a href="contact.html" style="color:var(--dark);font-weight:600">nous contacter</a></p>
+      </div>
+
+      <!-- Ski -->
+      <div class="tab-panel" id="tab-ski">
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="service-card-icon">🎿</div>
+            <h3>Skis alpins</h3>
+            <p>Large sélection de skis pour tous niveaux – débutant, intermédiaire et compétition. Marques Sport 2000.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">👢</div>
+            <h3>Chaussures de ski</h3>
+            <p>Essai et fitting sur place. Modèles pour adultes et enfants, avec réglage pointure par nos techniciens.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🧤</div>
+            <h3>Équipement & textile</h3>
+            <p>Vêtements de ski, gants, casques et protections. Sélection de grandes marques en magasin.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🌄</div>
+            <h3>Ski de randonnée</h3>
+            <p>Skis, peaux de phoque, chaussures rando et accessoires de sécurité. Tout pour explorer le val de Bagnes.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="tab-panel" id="tab-location">
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="service-card-icon">🚵</div>
+            <h3>VTT tout-suspendu</h3>
+            <p>Scott Genius ou similaire. Parfait pour les sentiers du val de Bagnes. Disponible à la journée ou à la semaine.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">⚡</div>
+            <h3>E-MTB</h3>
+            <p>E-Bike assistance électrique. Idéal pour les montées vers Verbier. Casque inclus dans la location.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🚴</div>
+            <h3>Vélo de route</h3>
+            <p>Pour les cols et les routes alpines. Tailles disponibles sur demande. Réservation conseillée en haute saison.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🎿</div>
+            <h3>Pack ski complet</h3>
+            <p>Skis + chaussures + bâtons + casque. Tarif journée ou semaine. Idéal pour les familles et les vacanciers.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🌨️</div>
+            <h3>Ski de randonnée</h3>
+            <p>Kit complet pour partir en randonnée alpine. Peaux de phoque incluses. Réservation recommandée.</p>
+          </div>
+        </div>
+        <p style="margin-top:2rem;font-size:.85rem;color:var(--gray)">Tarifs et disponibilités en magasin — <a href="contact.html" style="color:var(--dark);font-weight:600">nous contacter pour réserver</a></p>
+      </div>
+
+      <!-- Service atelier -->
+      <div class="tab-panel" id="tab-service">
+        <div class="service-grid">
+          <div class="service-card">
+            <div class="service-card-icon">🔧</div>
+            <h3>Révision complète</h3>
+            <p>Révision intégrale de votre vélo – transmission, freins, suspension, roulements. Devis gratuit sur place.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🛞</div>
+            <h3>Réparation rapide</h3>
+            <p>Crevaison, dérailleur, câbles, réglage des vitesses. Interventions rapides pour vous remettre en selle.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">⚡</div>
+            <h3>Entretien E-Bike</h3>
+            <p>Diagnostic batterie, mise à jour firmware, entretien moteur Bosch. Techniciens certifiés Bosch eBike.</p>
+            <span class="service-badge">Certifié Bosch</span>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">🏂</div>
+            <h3>Fartage ski</h3>
+            <p>Préparation des carres, fartage manuel ou machine. Vos skis comme au premier jour en 24h.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-card-icon">📍</div>
+            <h3>Atelier Route de Mauvoisin 1</h3>
+            <p>Notre atelier est situé à deux pas du magasin principal. Dépôt possible pendant les heures d'ouverture.</p>
+          </div>
+        </div>
+        <p style="margin-top:2rem;font-size:.85rem;color:var(--gray)">Apportez votre vélo directement — <a href="contact.html" style="color:var(--dark);font-weight:600">voir les horaires</a></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Brands -->
+  <div class="brands-strip">
+    <div class="container">
+      <div class="brands-inner">
+        <span style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-lt);margin-right:.5rem" data-i18n="brands_title"></span>
+        <span class="brand-tag">Scott</span>
+        <span class="brand-tag">BMC</span>
+        <span class="brand-tag">SCOR</span>
+        <span class="brand-tag">Bosch eBike</span>
+        <span class="brand-tag">Fox</span>
+        <span class="brand-tag">Sport 2000</span>
+        <span class="brand-tag">Völkl</span>
+        <span class="brand-tag">Salomon</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    function showTab(id) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
