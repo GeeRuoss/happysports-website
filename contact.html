@@ -6,12 +6,25 @@
   <title>Contact – Happy Sports</title>
   <meta name="description" content="Happy Sports Le Châble – Route de Verbier 22 – +41 27 776 15 44"/>
   <link rel="stylesheet" href="css/main.css"/>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    .workshop-services { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .workshop-item {
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .82rem; color: var(--dark);
+    }
+    .workshop-item-icon {
+      width: 1.75rem; height: 1.75rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg); border-radius: 6px;
+    }
+    .workshop-item-icon svg { width: .875rem; height: .875rem; stroke-width: 2; color: var(--gray); }
+  </style>
 </head>
 <body data-page="contact">
 
   <div id="site-nav"></div>
 
-  <!-- Page hero -->
   <section class="page-hero">
     <div class="container page-hero-inner">
       <span class="eyebrow" data-i18n="contact_tag"></span>
@@ -22,7 +35,6 @@
 
   <div id="info-strip"></div>
 
-  <!-- Adresses -->
   <section class="section">
     <div class="container">
       <div class="contact-grid">
@@ -32,7 +44,7 @@
           <h3 data-i18n="contact_shop"></h3>
 
           <div class="contact-item">
-            <span class="contact-icon">📍</span>
+            <div class="contact-icon"><i data-lucide="map-pin"></i></div>
             <div class="contact-text">
               <strong data-i18n="lbl_address"></strong>
               <a href="https://maps.google.com/?q=Route+de+Verbier+22+Le+Châble" target="_blank" rel="noopener">
@@ -42,7 +54,7 @@
           </div>
 
           <div class="contact-item">
-            <span class="contact-icon">📞</span>
+            <div class="contact-icon"><i data-lucide="phone"></i></div>
             <div class="contact-text">
               <strong data-i18n="lbl_phone"></strong>
               <a href="tel:+41277761544">+41 27 776 15 44</a>
@@ -50,7 +62,7 @@
           </div>
 
           <div class="contact-item">
-            <span class="contact-icon">📱</span>
+            <div class="contact-icon"><i data-lucide="smartphone"></i></div>
             <div class="contact-text">
               <strong data-i18n="lbl_mobile"></strong>
               <a href="tel:+41797367373">+41 79 736 73 73</a>
@@ -58,7 +70,7 @@
           </div>
 
           <div class="contact-item">
-            <span class="contact-icon">✉️</span>
+            <div class="contact-icon"><i data-lucide="mail"></i></div>
             <div class="contact-text">
               <strong data-i18n="lbl_email"></strong>
               <a href="mailto:happysports@netplus.ch">happysports@netplus.ch</a>
@@ -66,26 +78,18 @@
           </div>
 
           <div class="contact-item" style="align-items:flex-start">
-            <span class="contact-icon">🕐</span>
+            <div class="contact-icon" style="margin-top:.1rem"><i data-lucide="clock"></i></div>
             <div class="contact-text" style="width:100%">
               <strong data-i18n="lbl_hours"></strong>
               <table class="hours-table">
-                <thead>
-                  <tr>
-                    <th colspan="2" data-i18n="season_summer"></th>
-                  </tr>
-                </thead>
+                <thead><tr><th colspan="2" data-i18n="season_summer"></th></tr></thead>
                 <tbody>
                   <tr><td>Lun – Sam</td><td>8h30 – 12h00 / 14h00 – 18h30</td></tr>
                   <tr><td>Dimanche</td><td class="hours-closed">Fermé</td></tr>
                 </tbody>
               </table>
               <table class="hours-table" style="margin-top:1rem">
-                <thead>
-                  <tr>
-                    <th colspan="2" data-i18n="season_winter"></th>
-                  </tr>
-                </thead>
+                <thead><tr><th colspan="2" data-i18n="season_winter"></th></tr></thead>
                 <tbody>
                   <tr><td>Lun – Sam</td><td>8h30 – 12h00 / 14h00 – 18h30</td></tr>
                   <tr><td>Dimanche</td><td>9h00 – 17h00</td></tr>
@@ -95,7 +99,7 @@
           </div>
 
           <div class="contact-item">
-            <span class="contact-icon">🏅</span>
+            <div class="contact-icon"><i data-lucide="award"></i></div>
             <div class="contact-text">
               <strong data-i18n="lbl_partner"></strong>
               Sport 2000
@@ -108,7 +112,7 @@
           <h3 data-i18n="contact_atelier"></h3>
 
           <div class="contact-item">
-            <span class="contact-icon">📍</span>
+            <div class="contact-icon"><i data-lucide="map-pin"></i></div>
             <div class="contact-text">
               <strong data-i18n="lbl_address"></strong>
               <a href="https://maps.google.com/?q=Route+de+Mauvoisin+1+Le+Châble" target="_blank" rel="noopener">
@@ -118,7 +122,7 @@
           </div>
 
           <div class="contact-item">
-            <span class="contact-icon">📞</span>
+            <div class="contact-icon"><i data-lucide="phone"></i></div>
             <div class="contact-text">
               <strong data-i18n="lbl_phone"></strong>
               <a href="tel:+41277761544">+41 27 776 15 44</a>
@@ -126,8 +130,8 @@
           </div>
 
           <div class="contact-item" style="align-items:flex-start">
-            <span class="contact-icon">🕐</span>
-            <div class="contact-text">
+            <div class="contact-icon" style="margin-top:.1rem"><i data-lucide="clock"></i></div>
+            <div class="contact-text" style="width:100%">
               <strong data-i18n="lbl_hours"></strong>
               <table class="hours-table">
                 <tbody>
@@ -138,24 +142,28 @@
             </div>
           </div>
 
-          <!-- Services atelier -->
           <div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
-            <h4 style="font-size:.82rem;font-weight:700;margin-bottom:1rem;color:var(--dark)">Services disponibles</h4>
-            <div style="display:flex;flex-direction:column;gap:.6rem">
-              <div style="display:flex;gap:.6rem;font-size:.82rem;align-items:center">
-                <span>🔧</span> Révision complète vélo
+            <h4 style="font-size:.78rem;font-weight:700;letter-spacing:.04em;margin-bottom:.875rem;color:var(--dark)">Services disponibles</h4>
+            <div class="workshop-services">
+              <div class="workshop-item">
+                <div class="workshop-item-icon"><i data-lucide="settings-2"></i></div>
+                Révision complète vélo
               </div>
-              <div style="display:flex;gap:.6rem;font-size:.82rem;align-items:center">
-                <span>🛞</span> Réparation rapide
+              <div class="workshop-item">
+                <div class="workshop-item-icon"><i data-lucide="wrench"></i></div>
+                Réparation rapide
               </div>
-              <div style="display:flex;gap:.6rem;font-size:.82rem;align-items:center">
-                <span>⚡</span> Entretien E-Bike (certifié Bosch)
+              <div class="workshop-item">
+                <div class="workshop-item-icon"><i data-lucide="zap"></i></div>
+                Entretien E-Bike (certifié Bosch)
               </div>
-              <div style="display:flex;gap:.6rem;font-size:.82rem;align-items:center">
-                <span>🏂</span> Fartage & préparation ski
+              <div class="workshop-item">
+                <div class="workshop-item-icon"><i data-lucide="layers"></i></div>
+                Fartage & préparation ski
               </div>
-              <div style="display:flex;gap:.6rem;font-size:.82rem;align-items:center">
-                <span>📦</span> Dépôt possible pendant les horaires d'ouverture
+              <div class="workshop-item">
+                <div class="workshop-item-icon"><i data-lucide="package"></i></div>
+                Dépôt possible pendant les horaires d'ouverture
               </div>
             </div>
           </div>
@@ -165,7 +173,7 @@
     </div>
   </section>
 
-  <!-- Contact form -->
+  <!-- Formulaire -->
   <section class="section-alt">
     <div class="container">
       <div class="contact-form-wrap">
@@ -205,12 +213,11 @@
     function submitContact(e) {
       e.preventDefault();
       const btn = document.getElementById('cf-submit');
-      btn.disabled = true;
-      btn.textContent = '…';
+      btn.disabled = true; btn.textContent = '…';
       setTimeout(() => {
         document.getElementById('contact-form').reset();
-        btn.disabled = false;
-        applyI18n();
+        btn.disabled = false; applyI18n();
+        if (window.lucide) lucide.createIcons();
         const ok = document.getElementById('cf-ok');
         ok.style.display = 'block';
         setTimeout(() => ok.style.display = 'none', 5000);

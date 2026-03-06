@@ -43,13 +43,13 @@ function renderInfoStrip() {
   return `
   <div class="info-strip">
     <div class="container info-strip-inner">
-      <span class="info-strip-item">📍 Route de Verbier 22, 1934 Le Châble</span>
+      <span class="info-strip-item"><i data-lucide="map-pin"></i> Route de Verbier 22, 1934 Le Châble</span>
       <span class="info-sep">·</span>
-      <span class="info-strip-item">📞 <a href="tel:+41277761544" data-i18n="strip_phone"></a></span>
+      <span class="info-strip-item"><i data-lucide="phone"></i> <a href="tel:+41277761544" data-i18n="strip_phone"></a></span>
       <span class="info-sep">·</span>
-      <span class="info-strip-item">🕐 <span data-i18n="strip_open_summer"></span></span>
+      <span class="info-strip-item"><i data-lucide="clock"></i> <span data-i18n="strip_open_summer"></span></span>
       <span class="info-sep">·</span>
-      <span class="info-strip-item">🏅 <span data-i18n="strip_sport2000"></span></span>
+      <span class="info-strip-item"><i data-lucide="award"></i> <span data-i18n="strip_sport2000"></span></span>
     </div>
   </div>
   `;
@@ -105,4 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
     footerEl.innerHTML = renderFooter();
   }
   applyI18n();
+  /* Render Lucide icons — loaded via CDN in each page's <head> */
+  if (window.lucide) lucide.createIcons();
 });

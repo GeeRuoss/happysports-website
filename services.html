@@ -6,149 +6,98 @@
   <title>Happy Sport – Services Été & Hiver</title>
   <meta name="description" content="Happy Sport Le Châble – Vélos Scott BMC SCOR, ski, location, service & réparation. Tout pour l'été et l'hiver à Verbier."/>
   <link rel="stylesheet" href="css/main.css"/>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    /* ── Season toggle ── */
     .season-toggle {
-      display: flex; gap: .5rem;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 50px;
-      padding: .3rem;
-      width: fit-content;
-      margin: 0 auto 3rem;
+      display: flex; gap: .4rem;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 50px; padding: .3rem;
+      width: fit-content; margin: 0 auto 3rem;
     }
     .season-btn {
-      padding: .6rem 2rem;
-      border-radius: 50px;
-      font-size: .9rem; font-weight: 700;
-      cursor: pointer; border: none;
-      font-family: var(--font);
-      transition: all .25s;
-      color: var(--gray);
-      background: none;
+      display: flex; align-items: center; gap: .5rem;
+      padding: .6rem 1.75rem;
+      border-radius: 50px; font-size: .875rem; font-weight: 700;
+      cursor: pointer; border: none; font-family: var(--font);
+      transition: all .25s; color: var(--gray); background: none;
     }
-    .season-btn.active-summer {
-      background: var(--dark); color: var(--white);
-    }
-    .season-btn.active-winter {
-      background: #1e3a5f; color: var(--white);
-    }
+    .season-btn svg { width: 1rem; height: 1rem; stroke-width: 2; }
+    .season-btn.active-summer { background: var(--dark); color: var(--white); }
+    .season-btn.active-winter { background: #1e3a5f; color: var(--white); }
 
-    /* ── Season panels ── */
     .season-panel { display: none; }
     .season-panel.active { display: block; }
 
-    /* ── Category header ── */
     .cat-header {
       display: flex; align-items: center; gap: .875rem;
       padding: 1.5rem 0 1.25rem;
-      border-bottom: 2px solid var(--border);
-      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--border); margin-bottom: 1.5rem;
     }
-    .cat-header-icon { font-size: 1.75rem; }
-    .cat-header h2 { font-size: 1.25rem; font-weight: 800; letter-spacing: -.01em; }
-    .cat-header .cat-badge {
+    .cat-header h2 { font-size: 1.2rem; font-weight: 800; }
+    .cat-badge {
       margin-left: auto;
-      font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
       padding: .25rem .65rem; border-radius: 20px;
     }
-    .badge-new { background: #fef2f2; color: var(--red); }
-    .badge-pro { background: #f0fdf4; color: #15803d; }
-    .badge-partner { background: #f0f9ff; color: #0369a1; }
+    .badge-new   { background: #fef2f2; color: var(--red); }
+    .badge-pro   { background: #f0fdf4; color: #15803d; }
+    .badge-partner { background: #eff6ff; color: #1d4ed8; }
 
-    /* ── Service item ── */
     .service-list { display: flex; flex-direction: column; gap: .875rem; margin-bottom: 3rem; }
     .service-item {
       display: flex; gap: 1.25rem; align-items: flex-start;
       padding: 1.25rem 1.5rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--white);
-      transition: border-color .2s, box-shadow .2s;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--white); transition: box-shadow .2s;
     }
-    .service-item:hover { border-color: var(--border); box-shadow: var(--shadow); }
-    .service-item-icon { font-size: 1.75rem; flex-shrink: 0; margin-top: .1rem; }
+    .service-item:hover { box-shadow: var(--shadow); }
     .service-item-body { flex: 1; }
     .service-item-title {
       font-size: .95rem; font-weight: 700; color: var(--dark);
-      margin-bottom: .3rem;
-      display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+      margin-bottom: .3rem; display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
     }
     .service-item-desc { font-size: .82rem; color: var(--gray); line-height: 1.65; }
-    .inline-badge {
-      font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      padding: .15rem .45rem; border-radius: 4px;
-      background: #fef2f2; color: var(--red); white-space: nowrap;
-    }
-    .inline-badge-blue {
-      font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      padding: .15rem .45rem; border-radius: 4px;
-      background: #eff6ff; color: #1d4ed8; white-space: nowrap;
-    }
-    .inline-badge-green {
-      font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      padding: .15rem .45rem; border-radius: 4px;
-      background: #f0fdf4; color: #15803d; white-space: nowrap;
-    }
+    .ib       { font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 4px; background: #fef2f2; color: var(--red); white-space: nowrap; }
+    .ib-blue  { font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 4px; background: #eff6ff; color: #1d4ed8; white-space: nowrap; }
+    .ib-green { font-size: .6rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .15rem .45rem; border-radius: 4px; background: #f0fdf4; color: #15803d; white-space: nowrap; }
 
-    /* ── Season intro band ── */
     .season-intro {
-      padding: 2rem 2.5rem;
-      border-radius: var(--radius);
-      margin-bottom: 2.5rem;
-      display: flex; align-items: center; gap: 1.5rem;
+      padding: 2rem 2.5rem; border-radius: var(--radius);
+      margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1.5rem;
     }
     .season-intro-summer { background: linear-gradient(135deg, #1c1c1c, #2a1a00); color: white; }
     .season-intro-winter { background: linear-gradient(135deg, #0f1f3d, #1e3a5f); color: white; }
-    .season-intro-icon { font-size: 2.5rem; flex-shrink: 0; }
-    .season-intro h3 { font-size: 1.1rem; font-weight: 800; color: white; margin-bottom: .3rem; }
-    .season-intro p { font-size: .85rem; color: rgba(255,255,255,.65); line-height: 1.6; }
+    .season-intro h3 { font-size: 1.05rem; font-weight: 800; color: white; margin-bottom: .3rem; }
+    .season-intro p { font-size: .82rem; color: rgba(255,255,255,.6); line-height: 1.6; }
     .season-intro-dates {
       margin-left: auto; flex-shrink: 0;
-      font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
-      color: rgba(255,255,255,.5);
-      text-align: right; line-height: 1.8;
+      font-size: .7rem; font-weight: 600; letter-spacing: .04em;
+      color: rgba(255,255,255,.45); text-align: right; line-height: 1.9;
     }
 
-    /* ── Brands bar ── */
     .brands-bar {
       display: flex; gap: .75rem; flex-wrap: wrap; align-items: center;
-      padding: 1rem 1.5rem;
-      background: var(--bg); border-radius: var(--radius);
-      margin-bottom: 3rem;
+      padding: 1rem 1.5rem; background: var(--bg); border-radius: var(--radius); margin-bottom: 3rem;
     }
-    .brands-bar-label { font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-lt); margin-right: .25rem; }
+    .brands-bar-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--gray-lt); margin-right: .25rem; }
 
-    /* ── CTA section ── */
     .services-cta {
-      background: var(--dark);
-      color: white;
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      text-align: center;
-      margin-top: 1rem;
+      background: var(--dark); color: white; border-radius: var(--radius);
+      padding: 2.5rem; text-align: center; margin-top: 1rem;
     }
-    .services-cta h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: .5rem; }
+    .services-cta h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: .5rem; }
     .services-cta p { color: rgba(255,255,255,.6); margin-bottom: 1.5rem; }
-    .services-cta .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-cta-white {
-      padding: .75rem 1.75rem; font-size: .875rem; font-weight: 700;
-      border-radius: 8px; background: white; color: var(--dark);
-      transition: opacity .2s; font-family: var(--font); border: none; cursor: pointer;
-    }
-    .btn-cta-white:hover { opacity: .9; }
-    .btn-cta-ghost {
-      padding: .75rem 1.75rem; font-size: .875rem; font-weight: 700;
-      border-radius: 8px; background: transparent; color: rgba(255,255,255,.7);
-      border: 1.5px solid rgba(255,255,255,.25); font-family: var(--font); cursor: pointer;
-      transition: all .2s;
-    }
-    .btn-cta-ghost:hover { border-color: white; color: white; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-cta-w { padding: .75rem 1.75rem; font-size: .875rem; font-weight: 700; border-radius: 8px; background: white; color: var(--dark); font-family: var(--font); border: none; cursor: pointer; transition: opacity .2s; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; }
+    .btn-cta-w:hover { opacity: .88; }
+    .btn-cta-g { padding: .75rem 1.75rem; font-size: .875rem; font-weight: 700; border-radius: 8px; background: transparent; color: rgba(255,255,255,.7); border: 1.5px solid rgba(255,255,255,.2); font-family: var(--font); cursor: pointer; transition: all .2s; text-decoration: none; display: inline-flex; align-items: center; gap: .4rem; }
+    .btn-cta-g:hover { border-color: white; color: white; }
+    .btn-cta-w svg, .btn-cta-g svg { width: .9rem; height: .9rem; stroke-width: 2.5; }
 
     @media (max-width: 600px) {
       .season-intro { flex-wrap: wrap; }
       .season-intro-dates { margin-left: 0; text-align: left; }
-      .cat-header .cat-badge { display: none; }
+      .service-item { padding: 1rem; }
     }
   </style>
 </head>
@@ -156,7 +105,6 @@
 
   <div id="site-nav"></div>
 
-  <!-- Page hero -->
   <section class="page-hero">
     <div class="container page-hero-inner">
       <span class="eyebrow">Le Châble · Verbier</span>
@@ -167,66 +115,68 @@
 
   <div id="info-strip"></div>
 
-  <!-- Main content -->
   <section class="section">
     <div class="container">
 
-      <!-- Season toggle -->
-      <div class="season-toggle" id="season-toggle">
-        <button class="season-btn active-summer" id="btn-summer" onclick="showSeason('summer')">☀️ Été</button>
-        <button class="season-btn" id="btn-winter" onclick="showSeason('winter')">❄️ Hiver</button>
+      <!-- Toggle saison -->
+      <div class="season-toggle">
+        <button class="season-btn active-summer" id="btn-summer" onclick="showSeason('summer')">
+          <i data-lucide="sun"></i> Été
+        </button>
+        <button class="season-btn" id="btn-winter" onclick="showSeason('winter')">
+          <i data-lucide="snowflake"></i> Hiver
+        </button>
       </div>
 
-      <!-- ══ SUMMER ══════════════════════════════════════════ -->
+      <!-- ══ ÉTÉ ════════════════════════════════════════════ -->
       <div class="season-panel active" id="panel-summer">
 
         <div class="season-intro season-intro-summer">
-          <div class="season-intro-icon">☀️</div>
+          <div class="season-intro-icon"><i data-lucide="sun"></i></div>
           <div>
             <h3>Saison estivale</h3>
-            <p>Vélos haut de gamme, location de VTT & E-Bikes, service atelier et tout l'équipement pour profiter des trails et routes autour de Verbier.</p>
+            <p>Vélos haut de gamme, location de VTT & E-Bikes, service atelier et tout l'équipement pour les trails et routes autour de Verbier.</p>
           </div>
           <div class="season-intro-dates">Ouverture<br>Mai – Octobre<br>Lun–Sam 8h30–18h30</div>
         </div>
 
-        <!-- Vélos à vendre -->
+        <!-- Vélos -->
         <div class="cat-header">
-          <span class="cat-header-icon">🚴</span>
+          <div class="cat-header-icon"><i data-lucide="bike"></i></div>
           <h2>Vélos</h2>
           <span class="cat-badge badge-new">Gamme 2025</span>
         </div>
         <div class="service-list">
           <div class="service-item">
-            <span class="service-item-icon">🏔️</span>
+            <div class="service-item-icon"><i data-lucide="mountain"></i></div>
             <div class="service-item-body">
-              <div class="service-item-title">Scott Bikes — route, VTT, gravel <span class="inline-badge">30+ ans partenaire</span></div>
+              <div class="service-item-title">Scott Bikes — route, VTT, gravel <span class="ib">30+ ans partenaire</span></div>
               <div class="service-item-desc">Gamme complète Scott en magasin : vélos de route légers, VTT tout-suspendu, gravel pour les longues sorties et cross-country. Conseils personnalisés par une équipe passionnée.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">⚡</span>
+            <div class="service-item-icon"><i data-lucide="zap"></i></div>
             <div class="service-item-body">
-              <div class="service-item-title">Scott E-Bikes — assistance électrique <span class="inline-badge">Bonus CHF 400.–</span></div>
+              <div class="service-item-title">Scott E-Bikes — assistance électrique <span class="ib">Bonus CHF 400.–</span></div>
               <div class="service-item-desc">Scott Patron eRIDE 800Wh dès CHF 5'999.–. Moteur Bosch Performance CX, autonomie longue distance. Bonus communal de CHF 400.– pour les résidents de Bagnes.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🏅</span>
+            <div class="service-item-icon"><i data-lucide="award"></i></div>
             <div class="service-item-body">
-              <div class="service-item-title">BMC Switzerland <span class="inline-badge">Nouveauté 2025</span></div>
+              <div class="service-item-title">BMC Switzerland <span class="ib">Nouveauté 2025</span></div>
               <div class="service-item-desc">Vélos de performance suisses — route, gravel et montagne. Cadres carbone ultra-légers. Toute la gamme BMC 2025 disponible à la commande en magasin.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🚵</span>
+            <div class="service-item-icon"><i data-lucide="bike"></i></div>
             <div class="service-item-body">
-              <div class="service-item-title">SCOR Mountain Bikes <span class="inline-badge">Nouveauté 2025</span></div>
-              <div class="service-item-desc">La marque enduro développée dans les Alpes. Géométrie agressive, composants haut de gamme. Parfait pour les trails techniques autour de Verbier. Disponible en magasin 2025.</div>
+              <div class="service-item-title">SCOR Mountain Bikes <span class="ib">Nouveauté 2025</span></div>
+              <div class="service-item-desc">La marque enduro développée dans les Alpes. Géométrie agressive, composants haut de gamme. Parfait pour les trails techniques autour de Verbier.</div>
             </div>
           </div>
         </div>
 
-        <!-- Brands bar -->
         <div class="brands-bar">
           <span class="brands-bar-label">Marques</span>
           <span class="brand-tag">Scott</span>
@@ -238,114 +188,114 @@
 
         <!-- Location vélos -->
         <div class="cat-header">
-          <span class="cat-header-icon">🔑</span>
+          <div class="cat-header-icon"><i data-lucide="key"></i></div>
           <h2>Location vélos</h2>
           <span class="cat-badge badge-partner">Réservation conseillée</span>
         </div>
         <div class="service-list">
           <div class="service-item">
-            <span class="service-item-icon">🚵</span>
+            <div class="service-item-icon"><i data-lucide="bike"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">VTT tout-suspendu</div>
               <div class="service-item-desc">Scott Genius ou équivalent. Suspension avant et arrière, parfait pour les singles tracks et chemins techniques du val de Bagnes. Location à la demi-journée, journée ou semaine. Casque inclus.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">⚡</span>
+            <div class="service-item-icon"><i data-lucide="zap"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">E-MTB — assistance électrique</div>
               <div class="service-item-desc">Batterie haute capacité, idéal pour les montées vers Verbier sans se fatiguer. Location à la journée ou à la semaine. Chargeur fourni. Casque inclus. Réservation recommandée en haute saison.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🚴</span>
+            <div class="service-item-icon"><i data-lucide="bike"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Vélo de route</div>
               <div class="service-item-desc">Pour les amateurs de cols et de routes alpines. Plusieurs tailles disponibles. Location à la journée ou à la semaine. Pédales automatiques disponibles sur demande.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">📅</span>
+            <div class="service-item-icon"><i data-lucide="calendar"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Location à la saison</div>
-              <div class="service-item-desc">Formule avantageuse pour les résidents et les passionnés qui souhaitent un vélo de qualité pour toute la saison. Tarif préférentiel. Contacter le magasin pour un devis personnalisé.</div>
+              <div class="service-item-desc">Formule avantageuse pour les résidents et passionnés. Tarif préférentiel pour toute la saison. Contacter le magasin pour un devis personnalisé.</div>
             </div>
           </div>
         </div>
 
-        <!-- Service vélos -->
+        <!-- Atelier vélos -->
         <div class="cat-header">
-          <span class="cat-header-icon">🔧</span>
+          <div class="cat-header-icon"><i data-lucide="wrench"></i></div>
           <h2>Service & Atelier vélos</h2>
           <span class="cat-badge badge-pro">Techniciens certifiés</span>
         </div>
         <div class="service-list">
           <div class="service-item">
-            <span class="service-item-icon">🔩</span>
+            <div class="service-item-icon"><i data-lucide="settings-2"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Révision complète</div>
               <div class="service-item-desc">Démontage intégral, nettoyage, contrôle de tous les composants, remplacement des pièces défectueuses. Freins, transmission, roulements, suspension. Devis gratuit sur place.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🛞</span>
+            <div class="service-item-icon"><i data-lucide="wrench"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Réparation rapide</div>
               <div class="service-item-desc">Crevaison, réglage dérailleurs, câbles, freins. Interventions express pour vous remettre en selle rapidement. Dépôt à l'atelier Route de Mauvoisin 1.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">⚡</span>
+            <div class="service-item-icon"><i data-lucide="zap"></i></div>
             <div class="service-item-body">
-              <div class="service-item-title">Entretien E-Bike <span class="inline-badge-green">Certifié Bosch</span></div>
-              <div class="service-item-desc">Diagnostic batterie, mise à jour firmware, entretien moteur Bosch Performance. Techniciens certifiés par Bosch eBike Systems. Prise de rendez-vous recommandée.</div>
+              <div class="service-item-title">Entretien E-Bike <span class="ib-green">Certifié Bosch</span></div>
+              <div class="service-item-desc">Diagnostic batterie, mise à jour firmware, entretien moteur Bosch Performance. Techniciens certifiés par Bosch eBike Systems.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🧹</span>
+            <div class="service-item-icon"><i data-lucide="sparkles"></i></div>
             <div class="service-item-body">
-              <div class="service-item-title">Démontage & nettoyage</div>
-              <div class="service-item-desc">Nettoyage complet haute pression, dégraissage transmission, regraissage des pivots et roulements. Service disponible pour toutes marques.</div>
+              <div class="service-item-title">Nettoyage complet</div>
+              <div class="service-item-desc">Nettoyage haute pression, dégraissage transmission, regraissage des pivots et roulements. Service disponible pour toutes marques.</div>
             </div>
           </div>
         </div>
 
-        <!-- Équipement & accessoires été -->
+        <!-- Équipements été -->
         <div class="cat-header">
-          <span class="cat-header-icon">🎒</span>
+          <div class="cat-header-icon"><i data-lucide="backpack"></i></div>
           <h2>Équipements & accessoires</h2>
         </div>
         <div class="service-list">
           <div class="service-item">
-            <span class="service-item-icon">⛑️</span>
+            <div class="service-item-icon"><i data-lucide="hard-hat"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Casques vélo & protection</div>
-              <div class="service-item-desc">Casques route, VTT et enduro intégral. Protèges-genoux, gants, dorsales. Marques Fox, Scott, et Sport 2000. Essai sur place.</div>
+              <div class="service-item-desc">Casques route, VTT et enduro intégral. Protège-genoux, gants, dorsales. Marques Fox, Scott et Sport 2000. Essai sur place.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">👟</span>
+            <div class="service-item-icon"><i data-lucide="footprints"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Chaussures de sport — trail & randonnée</div>
-              <div class="service-item-desc">Chaussures de trail running, randonnée et vélo. Fitting professionnel, conseils personnalisés selon votre pratique. Large sélection de marques Sport 2000.</div>
+              <div class="service-item-desc">Chaussures de trail running, randonnée et vélo. Fitting professionnel, conseils selon votre pratique. Large sélection Sport 2000.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🧥</span>
+            <div class="service-item-icon"><i data-lucide="shirt"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Textile technique & nutrition</div>
-              <div class="service-item-desc">Maillots, cuissards, vestes coupe-vent, sacs à dos d'hydratation. Barres et gels énergétiques pour vos sorties. Gamme Sport 2000 complète en magasin.</div>
+              <div class="service-item-desc">Maillots, cuissards, vestes coupe-vent, sacs d'hydratation. Barres et gels énergétiques. Gamme Sport 2000 complète en magasin.</div>
             </div>
           </div>
         </div>
 
       </div><!-- /panel-summer -->
 
-      <!-- ══ WINTER ══════════════════════════════════════════ -->
+      <!-- ══ HIVER ══════════════════════════════════════════ -->
       <div class="season-panel" id="panel-winter">
 
         <div class="season-intro season-intro-winter">
-          <div class="season-intro-icon">❄️</div>
+          <div class="season-intro-icon"><i data-lucide="snowflake"></i></div>
           <div>
             <h3>Saison hivernale</h3>
             <p>Location de skis, snowboards et raquettes, service atelier haut de gamme et tout le matériel pour profiter du domaine des 4 Vallées depuis Le Châble.</p>
@@ -355,41 +305,41 @@
 
         <!-- Location ski -->
         <div class="cat-header">
-          <span class="cat-header-icon">🔑</span>
+          <div class="cat-header-icon"><i data-lucide="key"></i></div>
           <h2>Location ski & snowboard</h2>
           <span class="cat-badge badge-partner">Partenaire Sport 2000</span>
         </div>
         <div class="service-list">
           <div class="service-item">
-            <span class="service-item-icon">🎿</span>
+            <div class="service-item-icon"><i data-lucide="mountain-snow"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Pack ski alpin complet</div>
-              <div class="service-item-desc">Skis + chaussures + bâtons + casque. Équipement récent et parfaitement entretenu. Tous niveaux : débutant, intermédiaire, expert. Tarifs journée, week-end ou semaine. Idéal pour les familles en vacances.</div>
+              <div class="service-item-desc">Skis + chaussures + bâtons + casque. Équipement récent et parfaitement entretenu. Tous niveaux : débutant, intermédiaire, expert. Tarifs journée, week-end ou semaine.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🏂</span>
+            <div class="service-item-icon"><i data-lucide="snowflake"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Snowboard & snowboard boots</div>
               <div class="service-item-desc">Planches freestyle et freeride, chaussures soft. Réglage des fixations inclus. Équipement adapté à tous les niveaux, des débutants aux riders confirmés.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🌄</span>
+            <div class="service-item-icon"><i data-lucide="mountain"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Ski de randonnée</div>
-              <div class="service-item-desc">Kit complet : skis rando, fixations touring, chaussures rando, peaux de phoque. Idéal pour explorer les pentes vierges autour du val de Bagnes. Conseils d'itinéraires disponibles.</div>
+              <div class="service-item-desc">Kit complet : skis rando, fixations touring, chaussures, peaux de phoque. Idéal pour explorer les pentes vierges autour du val de Bagnes. Conseils d'itinéraires disponibles.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🥾</span>
+            <div class="service-item-icon"><i data-lucide="footprints"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Raquettes à neige</div>
-              <div class="service-item-desc">Location de raquettes pour les randonneurs hivernaux. Bâtons télescopiques inclus. Accès facile aux nombreuses pistes de randonnée raquettes du domaine de Verbier.</div>
+              <div class="service-item-desc">Location de raquettes pour les randonneurs hivernaux. Bâtons télescopiques inclus. Accès aux nombreuses pistes de randonnée du domaine de Verbier.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">📅</span>
+            <div class="service-item-icon"><i data-lucide="calendar"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Location à la saison</div>
               <div class="service-item-desc">Formule économique pour les résidents et saisonniers. Pack skis à la saison avec entretien inclus. Tarif préférentiel. Contacter le magasin avant le début de la saison.</div>
@@ -399,73 +349,73 @@
 
         <!-- Vente ski -->
         <div class="cat-header">
-          <span class="cat-header-icon">🎿</span>
+          <div class="cat-header-icon"><i data-lucide="mountain-snow"></i></div>
           <h2>Matériel ski — vente</h2>
         </div>
         <div class="service-list">
           <div class="service-item">
-            <span class="service-item-icon">⛷️</span>
+            <div class="service-item-icon"><i data-lucide="mountain-snow"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Skis alpins</div>
-              <div class="service-item-desc">Large sélection pour tous niveaux et pratiques : carving, freeride, all-mountain. Marques Sport 2000 et grandes enseignes. Conseils personnalisés par nos spécialistes.</div>
+              <div class="service-item-desc">Large sélection pour tous niveaux et pratiques : carving, freeride, all-mountain. Marques Sport 2000. Conseils personnalisés par nos spécialistes.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">👢</span>
+            <div class="service-item-icon"><i data-lucide="footprints"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Chaussures de ski — fitting expert</div>
-              <div class="service-item-desc">Essai et fitting sur place par nos techniciens. Modèles adultes et enfants, largeurs variées. Semelles thermoformées disponibles. Une chaussure bien ajustée = une meilleure glisse et moins de fatigue.</div>
+              <div class="service-item-desc">Essai et fitting sur place par nos techniciens. Modèles adultes et enfants, largeurs variées. Semelles thermoformées disponibles.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🧤</span>
+            <div class="service-item-icon"><i data-lucide="shirt"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Textile & équipements hiver</div>
-              <div class="service-item-desc">Vêtements de ski (vestes, pantalons, combinaisons), gants, cagoules, lunettes et casques. Sélection de marques Sport 2000 pour toute la famille.</div>
+              <div class="service-item-desc">Vêtements de ski, gants, cagoules, lunettes et casques. Sélection Sport 2000 pour toute la famille.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🔒</span>
+            <div class="service-item-icon"><i data-lucide="shield-alert"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Équipement de sécurité montagne</div>
-              <div class="service-item-desc">DVA (détecteur de victimes d'avalanche), sonde, pelle. Équipement de sécurité obligatoire pour le hors-piste. Location et vente disponibles. Conseils sur l'utilisation.</div>
+              <div class="service-item-desc">DVA (détecteur de victimes d'avalanche), sonde, pelle. Équipement obligatoire pour le hors-piste. Location et vente. Conseils sur l'utilisation.</div>
             </div>
           </div>
         </div>
 
-        <!-- Service ski -->
+        <!-- Atelier ski -->
         <div class="cat-header">
-          <span class="cat-header-icon">🔧</span>
+          <div class="cat-header-icon"><i data-lucide="wrench"></i></div>
           <h2>Service & Atelier ski</h2>
           <span class="cat-badge badge-pro">24h chrono</span>
         </div>
         <div class="service-list">
           <div class="service-item">
-            <span class="service-item-icon">🏂</span>
+            <div class="service-item-icon"><i data-lucide="layers"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Fartage & structuration</div>
-              <div class="service-item-desc">Fartage manuel ou machine selon les conditions de neige. Structuration des semelles pour optimiser la glisse. Vos skis comme au premier jour en moins de 24h. Service express possible.</div>
+              <div class="service-item-desc">Fartage manuel ou machine selon les conditions de neige. Structuration des semelles pour optimiser la glisse. Vos skis comme au premier jour en moins de 24h.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">⚙️</span>
+            <div class="service-item-icon"><i data-lucide="settings"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Affûtage des carres</div>
-              <div class="service-item-desc">Réglage des angles de carre selon votre niveau et votre style de ski. Affûtage machine + finition manuelle. Service disponible sur vos propres skis ou le matériel de location.</div>
+              <div class="service-item-desc">Réglage des angles de carre selon votre niveau. Affûtage machine + finition manuelle. Sur vos propres skis ou le matériel de location.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🔨</span>
+            <div class="service-item-icon"><i data-lucide="hammer"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Réparation semelles & carres</div>
-              <div class="service-item-desc">Bouchage des griffes et impacts, réparation des semelles endommagées. Remplacement de carres cassées. Résultat garantie sur tout type de ski ou snowboard.</div>
+              <div class="service-item-desc">Bouchage des griffes et impacts, réparation des semelles endommagées. Remplacement de carres cassées. Garanti sur tout type de ski ou snowboard.</div>
             </div>
           </div>
           <div class="service-item">
-            <span class="service-item-icon">🎿</span>
+            <div class="service-item-icon"><i data-lucide="link-2"></i></div>
             <div class="service-item-body">
               <div class="service-item-title">Réglage & montage de fixations</div>
-              <div class="service-item-desc">Montage de fixations sur mesure, réglage DIN selon votre poids et niveau. Contrôle de sécurité inclus. Service disponible pour skis alpins et ski de randonnée.</div>
+              <div class="service-item-desc">Montage de fixations sur mesure, réglage DIN selon poids et niveau. Contrôle de sécurité inclus. Pour skis alpins et ski de randonnée.</div>
             </div>
           </div>
         </div>
@@ -477,19 +427,18 @@
         <h3>Une question ? Venez nous voir</h3>
         <p>Notre équipe est à votre disposition au magasin ou par téléphone.</p>
         <div class="cta-btns">
-          <a href="contact.html" class="btn-cta-white">Nous contacter</a>
-          <a href="occasion.html" class="btn-cta-ghost">Voir les occasions</a>
+          <a href="contact.html" class="btn-cta-w"><i data-lucide="map-pin"></i> Nous contacter</a>
+          <a href="occasion.html" class="btn-cta-g"><i data-lucide="tag"></i> Voir les occasions</a>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Brands strip -->
   <div class="brands-strip">
     <div class="container">
       <div class="brands-inner">
-        <span style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-lt);margin-right:.5rem">Nos marques</span>
+        <span style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-lt);margin-right:.5rem">Nos marques</span>
         <span class="brand-tag">Scott</span>
         <span class="brand-tag">BMC</span>
         <span class="brand-tag">SCOR</span>
@@ -510,18 +459,16 @@
     function showSeason(season) {
       document.querySelectorAll('.season-panel').forEach(p => p.classList.remove('active'));
       document.getElementById('panel-' + season).classList.add('active');
-
-      const btnSummer = document.getElementById('btn-summer');
-      const btnWinter = document.getElementById('btn-winter');
-      btnSummer.className = 'season-btn' + (season === 'summer' ? ' active-summer' : '');
-      btnWinter.className = 'season-btn' + (season === 'winter' ? ' active-winter' : '');
-
+      const btnS = document.getElementById('btn-summer');
+      const btnW = document.getElementById('btn-winter');
+      btnS.className = 'season-btn' + (season === 'summer' ? ' active-summer' : '');
+      btnW.className = 'season-btn' + (season === 'winter' ? ' active-winter' : '');
+      if (window.lucide) lucide.createIcons();
       window.scrollTo({ top: document.querySelector('.season-toggle').offsetTop - 90, behavior: 'smooth' });
     }
-
-    /* Auto-select season based on current month */
-    const month = new Date().getMonth() + 1;
-    if (month >= 11 || month <= 4) showSeason('winter');
+    /* Auto-select by month */
+    const m = new Date().getMonth() + 1;
+    if (m >= 11 || m <= 4) showSeason('winter');
   </script>
 </body>
 </html>
