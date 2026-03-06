@@ -2,14 +2,15 @@
    Happy Sports — Shared Components (Nav / Footer)
    ============================================================ */
 
+/* base path : '' pour les pages racine, '../' pour /admin/ */
+const base = window.location.pathname.includes('/admin/') ? '../' : '';
+
 function renderNav(activePage) {
   const pages = [
     { key: 'services', href: 'services.html', label: 'nav_services' },
     { key: 'occasion', href: 'occasion.html', label: 'nav_occasion' },
     { key: 'contact',  href: 'contact.html',  label: 'nav_contact'  },
   ];
-  const isAdmin = window.location.pathname.includes('/admin/');
-  const base = isAdmin ? '../' : '';
 
   const links = pages.map(p =>
     `<a href="${base}${p.href}" class="${activePage === p.key ? 'active' : ''}" data-i18n="${p.label}"></a>`
@@ -87,7 +88,7 @@ function renderFooter() {
       </div>
       <div class="footer-bottom">
         <span data-i18n="footer_copy"></span>
-        <a href="admin/index.html" data-i18n="footer_admin"></a>
+        <a href="${base}admin/index.html" data-i18n="footer_admin"></a>
       </div>
     </div>
   </footer>
