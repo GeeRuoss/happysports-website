@@ -103,9 +103,16 @@
 
       grid.innerHTML = filtered.map(p => {
         const discount = p.origPrice ? Math.round((1 - p.price / p.origPrice) * 100) : 0;
+        const imgHtml = p.img
+          ? `<img src="${p.img}" alt="${p.name}" loading="lazy">`
+          : (p.emoji || '🏷️');
         return `
         <div class="product-card">
-          <div class="product-img">${p.emoji || '🏷️'}</div>
+          <div class="product-img">
+            ${imgHtml}
+            ${discount >= 10 ? `<span class="product-img-badge">–${discount}%</span>` : ''}
+            ${p.condition ? `<span class="product-condition">${p.condition}</span>` : ''}
+          </div>
           <div class="product-body">
             <div class="product-cat">${HS_DATA.catLabel(p.cat)}</div>
             <div class="product-name">${p.name}</div>
@@ -113,7 +120,6 @@
             <div class="product-price-row">
               <span class="product-price">${HS_DATA.formatPrice(p.price)}</span>
               ${p.origPrice && p.origPrice > p.price ? `<span class="product-price-orig">${HS_DATA.formatPrice(p.origPrice)}</span>` : ''}
-              ${discount > 0 ? `<span class="product-badge">–${discount}%</span>` : ''}
             </div>
           </div>
           <div class="product-footer">
@@ -135,8 +141,11 @@
       currentProductId = productId;
       const p = HS_DATA.getProducts().find(x => x.id === productId);
       if (!p) return;
+      const modalImg = p.img
+        ? `<img src="${p.img}" alt="${p.name}" style="width:64px;height:64px;object-fit:cover;border-radius:8px;flex-shrink:0;">`
+        : `<div class="modal-product-icon">${p.emoji || '🏷️'}</div>`;
       document.getElementById('modal-product-info').innerHTML = `
-        <div class="modal-product-icon">${p.emoji || '🏷️'}</div>
+        ${modalImg}
         <div>
           <div class="modal-product-name">${p.name}</div>
           <div class="modal-product-price">${HS_DATA.formatPrice(p.price)}</div>
