@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ski – Happy Sports</title>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="ski">
+  <div id="site-header"></div>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-header-eyebrow" data-i18n="ski_hero_tag"></span>
+      <h1 data-i18n="ski_hero_title"></h1>
+      <p data-i18n="ski_hero_sub"></p>
+    </div>
+  </div>
+
+  <div id="info-strip-container"></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Skis & équipements</span>
+        <h2>Notre assortiment ski</h2>
+        <p>Freeride, piste, randonnée : retrouvez un grand choix de matériel testé et sélectionné par notre équipe.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem">
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🎿</div>
+          <h3 style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Skis Freeride</h3>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.6">Large choix pour la poudreuse et le hors-piste. Test à disposition.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🏔️</div>
+          <h3 style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Skis de Piste</h3>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.6">Du débutant au compétiteur — toutes les gammes disponibles.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🌄</div>
+          <h3 style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Ski de Randonnée</h3>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.6">Skis légers, fixations de rando, chaussures touring — grand choix.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">👟</div>
+          <h3 style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Chaussures de Ski</h3>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.6">Fitting professionnel inclus. Ajustement sur mesure par nos spécialistes.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🔩</div>
+          <h3 style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Fixations & Bâtons</h3>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.6">Installation et réglage professionnel des fixations inclus.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🏷️</div>
+          <h3 style="font-size:1rem;font-weight:800;margin-bottom:.5rem">Promotions Hiver</h3>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.6">Offres à prix bradés tout l'hiver. Visitez notre magasin ou <a href="occasion.html" style="color:var(--red)">notre page occasion</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-eyebrow" style="color:var(--red)">Skis test</span>
+        <h2 style="color:var(--white)">Testez avant d'acheter</h2>
+        <p style="color:#888">Skis test à disposition pour essayer sur les pistes avant de faire votre choix. Demandez à notre équipe.</p>
+      </div>
+      <div style="text-align:center;margin-top:1.5rem">
+        <a href="contact.html" class="btn btn-primary">Réserver un ski test</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const strip = document.getElementById('info-strip-container');
+      if (strip) strip.innerHTML = renderInfoStrip();
+      applyI18n();
+    });
+  </script>
+</body>
+</html>

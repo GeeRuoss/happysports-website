@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vélos – Happy Sports</title>
+  <meta name="description" content="Vélos SCOTT, BMC, SCOR. E-Bikes, Route, VTT — partenaire Sport 2000 à Le Châble / Verbier."/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <style>
+    .brand-section { padding: 3.5rem 0; }
+    .brand-section:nth-child(even) { background: var(--off-white); }
+    .brand-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; }
+    .brand-layout.reverse { direction: rtl; }
+    .brand-layout.reverse > * { direction: ltr; }
+    .brand-label {
+      font-size: 2rem; font-weight: 900; color: var(--black);
+      margin-bottom: 1rem; letter-spacing: -1px;
+    }
+    .brand-visual {
+      height: 280px; background: var(--gray-light); border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 6rem; border: 1.5px solid var(--border);
+    }
+    .brand-since { font-size: 0.7rem; font-weight: 800; color: var(--red); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    @media (max-width: 720px) {
+      .brand-layout { grid-template-columns: 1fr; }
+      .brand-layout.reverse { direction: ltr; }
+    }
+  </style>
+</head>
+<body data-page="bikes">
+
+  <div id="site-header"></div>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-header-eyebrow" data-i18n="bikes_hero_tag"></span>
+      <h1 data-i18n="bikes_hero_title"></h1>
+      <p data-i18n="bikes_hero_sub"></p>
+    </div>
+  </div>
+
+  <div id="info-strip-container"></div>
+
+  <!-- SCOTT -->
+  <div class="brand-section" id="route">
+    <div class="container">
+      <div class="brand-layout">
+        <div>
+          <p class="brand-since">Partenaire depuis 1995</p>
+          <div class="brand-label">SCOTT</div>
+          <p data-i18n="bikes_scott_text" style="color:var(--gray);font-size:.92rem;line-height:1.7;margin-bottom:1.5rem"></p>
+          <div class="feature-list">
+            <div class="feature-item"><span class="feature-check">✓</span>Vélos de route · E-Road</div>
+            <div class="feature-item"><span class="feature-check">✓</span>VTT enduro, trail, XC</div>
+            <div class="feature-item"><span class="feature-check">✓</span>E-Bikes (Bosch, TQ)</div>
+            <div class="feature-item"><span class="feature-check">✓</span>Test avant achat possible</div>
+            <div class="feature-item"><span class="feature-check">✓</span>Reprise de votre ancien vélo</div>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="occasion.html" class="btn btn-primary btn-sm">Voir les occasions Scott</a>
+          </div>
+        </div>
+        <div class="brand-visual">🚴</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BMC / SCOR -->
+  <div class="brand-section" id="vtt">
+    <div class="container">
+      <div class="brand-layout reverse">
+        <div>
+          <p class="brand-since">Nouveauté 2025</p>
+          <div class="brand-label" data-i18n="bikes_bmc_title"></div>
+          <p data-i18n="bikes_bmc_text" style="color:var(--gray);font-size:.92rem;line-height:1.7;margin-bottom:1.5rem"></p>
+          <div class="feature-list">
+            <div class="feature-item"><span class="feature-check">✓</span>BMC — vélos suisses de haute performance</div>
+            <div class="feature-item"><span class="feature-check">✓</span>SCOR — VTT trail et enduro</div>
+            <div class="feature-item"><span class="feature-check">✓</span>Démonstration sur rendez-vous</div>
+          </div>
+          <div style="margin-top:1.5rem">
+            <a href="contact.html" class="btn btn-dark btn-sm">Prendre rendez-vous</a>
+          </div>
+        </div>
+        <div class="brand-visual">🏔️</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- E-BIKES -->
+  <div class="brand-section" id="ebike" style="background:var(--black);color:var(--white)">
+    <div class="container">
+      <div class="brand-layout">
+        <div>
+          <p class="brand-since" style="color:var(--red)">E-Bikes · 2025</p>
+          <div class="brand-label" style="color:var(--white)" data-i18n="bikes_ebike_title"></div>
+          <p data-i18n="bikes_ebike_text" style="color:#888;font-size:.92rem;line-height:1.7;margin-bottom:1.5rem"></p>
+          <div style="background:var(--red);border-radius:var(--radius);padding:1rem 1.2rem;margin-bottom:1.5rem">
+            <p style="font-size:.8rem;font-weight:700;color:#fff;">💰 Résidents de la commune de Bagnes : <strong>bonus communal de CHF 400.—</strong> sur l'achat d'un e-bike chez Happy Sports.</p>
+          </div>
+          <a href="contact.html" class="btn btn-primary btn-sm">Demander un devis</a>
+        </div>
+        <div class="brand-visual" style="background:#222;border-color:#333">⚡</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICE VÉLOS -->
+  <div class="brand-section" id="service-velo">
+    <div class="container">
+      <div class="section-header center">
+        <span class="section-eyebrow">Atelier · Route de Mauvoisin 1</span>
+        <h2 data-i18n="bikes_service_title"></h2>
+        <p data-i18n="bikes_service_text"></p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem;margin-top:2rem">
+        <div class="card" style="padding:1.5rem">
+          <div style="font-size:2rem;margin-bottom:.8rem">🔧</div>
+          <h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Révision complète</h4>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.5">Transmission, freins, direction — révision toutes marques par nos mécaniciens.</p>
+        </div>
+        <div class="card" style="padding:1.5rem">
+          <div style="font-size:2rem;margin-bottom:.8rem">⚙️</div>
+          <h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Réglages & réparations</h4>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.5">Petits réglages, remplacement de pièces, ponctualité garantie.</p>
+        </div>
+        <div class="card" style="padding:1.5rem">
+          <div style="font-size:2rem;margin-bottom:.8rem">🔋</div>
+          <h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Service E-Bike</h4>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.5">Diagnostic batterie, mise à jour firmware, entretien moteur Bosch & TQ.</p>
+        </div>
+        <div class="card" style="padding:1.5rem">
+          <div style="font-size:2rem;margin-bottom:.8rem">🔄</div>
+          <h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Reprise & échange</h4>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.5">Reprise de votre ancien vélo lors d'un nouvel achat. Estimation gratuite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const strip = document.getElementById('info-strip-container');
+      if (strip) strip.innerHTML = renderInfoStrip();
+      applyI18n();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Locations – Happy Sports</title>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="rental">
+  <div id="site-header"></div>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-header-eyebrow" data-i18n="rental_hero_tag"></span>
+      <h1 data-i18n="rental_hero_title"></h1>
+      <p data-i18n="rental_hero_sub"></p>
+    </div>
+  </div>
+  <div id="info-strip-container"></div>
+
+  <section class="section" id="velos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="nav_rental_bike"></span>
+        <h2>Location de vélos</h2>
+        <p>Louez un vélo pour une sortie, un week-end ou toute la saison. Disponible en magasin.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem">
+        <div class="card" style="padding:2rem"><div style="font-size:2.5rem;margin-bottom:1rem">🚵</div><h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">VTT tout-suspendu</h3><p style="font-size:.8rem;color:var(--gray);line-height:1.6">Scott Genius ou similaire. Idéal pour les sentiers du val de Bagnes.</p></div>
+        <div class="card" style="padding:2rem"><div style="font-size:2.5rem;margin-bottom:1rem">⚡</div><h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">E-MTB</h3><p style="font-size:.8rem;color:var(--gray);line-height:1.6">E-Bike assistance électrique. Parfait pour les montées vers Verbier.</p></div>
+        <div class="card" style="padding:2rem"><div style="font-size:2.5rem;margin-bottom:1rem">🚴</div><h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">Vélo de route</h3><p style="font-size:.8rem;color:var(--gray);line-height:1.6">Pour les cols et les routes alpines. Tailles disponibles sur demande.</p></div>
+      </div>
+      <p style="margin-top:1.5rem;font-size:.82rem;color:var(--gray)">Tarifs et disponibilités en magasin. Réservation conseillée en haute saison.</p>
+      <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:1rem">Demander les tarifs</a>
+    </div>
+  </section>
+
+  <section class="section section-off" id="ski">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow" data-i18n="nav_rental_ski"></span>
+        <h2>Location de ski</h2>
+        <p>Équipement ski de qualité pour toute la famille. Sans prise de tête.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem">
+        <div class="card" style="padding:2rem"><div style="font-size:2.5rem;margin-bottom:1rem">🎿</div><h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">Pack Ski Complet</h3><p style="font-size:.8rem;color:var(--gray);line-height:1.6">Skis + chaussures + bâtons + casque. Tarif journée ou semaine.</p></div>
+        <div class="card" style="padding:2rem"><div style="font-size:2.5rem;margin-bottom:1rem">🌄</div><h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">Ski de Randonnée</h3><p style="font-size:.8rem;color:var(--gray);line-height:1.6">Kit complet pour partir en randonnée alpine.</p></div>
+      </div>
+      <a href="contact.html" class="btn btn-primary btn-sm" style="margin-top:1.5rem">Réserver votre équipement</a>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="js/i18n.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const strip = document.getElementById('info-strip-container');
+      if (strip) strip.innerHTML = renderInfoStrip();
+      applyI18n();
+    });
+  </script>
+</body>
+</html>

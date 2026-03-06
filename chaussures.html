@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chaussures de Sport – Happy Sports</title>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="shoes">
+  <div id="site-header"></div>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-header-eyebrow" data-i18n="shoes_hero_tag"></span>
+      <h1 data-i18n="shoes_hero_title"></h1>
+      <p data-i18n="shoes_hero_sub"></p>
+    </div>
+  </div>
+  <div id="info-strip-container"></div>
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Notre rayon chaussures</span>
+        <h2>La bonne chaussure pour chaque discipline</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem">
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">⛷️</div>
+          <h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">Chaussures de Ski</h3>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.6">Toutes morphologies, fitting pro, thermoformage inclus.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🚵</div>
+          <h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">Chaussures de Vélo</h3>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.6">Route, VTT, SPD — toutes les attaches compatibles.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">🏃</div>
+          <h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">Trail & Course</h3>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.6">Chaussures trail, course sur route, randonnée légère.</p>
+        </div>
+        <div class="card" style="padding:2rem">
+          <div style="font-size:2.5rem;margin-bottom:1rem">👟</div>
+          <h3 style="font-size:.95rem;font-weight:800;margin-bottom:.5rem">Loisirs</h3>
+          <p style="font-size:.8rem;color:var(--gray);line-height:1.6">Sneakers, chaussures de marche et lifestyle sportif.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div id="site-footer"></div>
+  <script src="js/i18n.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const strip = document.getElementById('info-strip-container');
+      if (strip) strip.innerHTML = renderInfoStrip();
+      applyI18n();
+    });
+  </script>
+</body>
+</html>

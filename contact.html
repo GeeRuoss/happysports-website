@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – Happy Sports</title>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="contact">
+
+  <div id="site-header"></div>
+
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-header-eyebrow" data-i18n="contact_hero_tag"></span>
+      <h1 data-i18n="contact_hero_title"></h1>
+      <p data-i18n="contact_hero_sub"></p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT: info -->
+        <div>
+          <!-- Magasin -->
+          <div style="margin-bottom:2.5rem">
+            <span class="section-eyebrow" data-i18n="contact_store"></span>
+            <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:.8rem">Route de Verbier 22, 1934 Le Châble</h3>
+            <p style="font-size:.85rem;color:var(--gray);margin-bottom:.5rem">À côté du restaurant l'Escale. Parking réservé aux clients.</p>
+            <div class="map-placeholder">📍</div>
+          </div>
+
+          <!-- Atelier -->
+          <div style="margin-bottom:2.5rem">
+            <span class="section-eyebrow" data-i18n="contact_workshop"></span>
+            <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:.8rem">Route de Mauvoisin 1, 1934 Le Châble</h3>
+            <p style="font-size:.85rem;color:var(--gray);">Atelier de réparation vélos et skis.</p>
+            <div class="map-placeholder">🔧</div>
+          </div>
+
+          <!-- Contacts directs -->
+          <div>
+            <span class="section-eyebrow">Coordonnées</span>
+            <div class="footer-contact-item" style="margin-top:.8rem">
+              <span class="footer-contact-icon">📞</span>
+              <div>
+                <p style="font-size:.85rem"><a href="tel:+41277761544">+41 27 776 15 44</a> (magasin)</p>
+                <p style="font-size:.85rem"><a href="tel:+41797367373">+41 79 736 73 73</a> (portable)</p>
+              </div>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon">✉️</span>
+              <div><a href="mailto:happysports@netplus.ch" style="font-size:.85rem">happysports@netplus.ch</a></div>
+            </div>
+          </div>
+
+          <!-- Horaires -->
+          <div style="margin-top:2rem">
+            <span class="section-eyebrow" data-i18n="footer_hours"></span>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.8rem">
+              <div>
+                <p style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:.5rem" data-i18n="hours_summer"></p>
+                <table class="hours-table">
+                  <tr><td data-i18n="hours_mon_fri"></td><td>9h–12h / 15h–18h30</td></tr>
+                  <tr><td data-i18n="hours_sat"></td><td>9h–12h / 13h30–17h</td></tr>
+                  <tr><td data-i18n="hours_sun"></td><td class="hours-closed" data-i18n="hours_closed"></td></tr>
+                </table>
+              </div>
+              <div>
+                <p style="font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#555;margin-bottom:.5rem" data-i18n="hours_winter"></p>
+                <table class="hours-table">
+                  <tr><td data-i18n="hours_mon_fri"></td><td>8h30–12h / 13h30–18h30</td></tr>
+                  <tr><td data-i18n="hours_sat"></td><td>8h30–12h / 13h30–17h</td></tr>
+                  <tr><td data-i18n="hours_sun"></td><td>8h30–11h / 15h–17h</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: form -->
+        <div>
+          <span class="section-eyebrow" data-i18n="contact_form_title"></span>
+          <h2 style="font-size:1.5rem;font-weight:900;margin-bottom:1.5rem;margin-top:.3rem" data-i18n="contact_form_title"></h2>
+
+          <div id="contact-form-wrap">
+            <div class="form-group">
+              <label data-i18n="contact_form_name"></label>
+              <input type="text" id="c-name" class="form-control" placeholder="Jean Dupont"/>
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_email"></label>
+              <input type="email" id="c-email" class="form-control" placeholder="jean@exemple.ch"/>
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_phone"></label>
+              <input type="tel" id="c-phone" class="form-control" placeholder="+41 79 000 00 00"/>
+            </div>
+            <div class="form-group">
+              <label data-i18n="contact_form_msg"></label>
+              <textarea id="c-msg" class="form-control" rows="5" placeholder="Votre message..."></textarea>
+            </div>
+            <button class="btn btn-primary btn-full" onclick="sendContact()" data-i18n="contact_form_send"></button>
+          </div>
+
+          <div id="contact-success" style="display:none;text-align:center;padding:3rem 1rem">
+            <div style="font-size:3rem;margin-bottom:1rem">✅</div>
+            <h3 style="font-size:1.1rem;font-weight:800;margin-bottom:.5rem" data-i18n="contact_form_ok"></h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    function sendContact() {
+      const name  = document.getElementById('c-name').value.trim();
+      const email = document.getElementById('c-email').value.trim();
+      const msg   = document.getElementById('c-msg').value.trim();
+      if (!name || !email || !msg) { alert(t('form_required')); return; }
+      // In production: send via API/email service
+      document.getElementById('contact-form-wrap').style.display = 'none';
+      document.getElementById('contact-success').style.display = 'block';
+    }
+    document.addEventListener('DOMContentLoaded', () => { applyI18n(); });
+  </script>
+</body>
+</html>

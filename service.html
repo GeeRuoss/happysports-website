@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Service & Réparation – Happy Sports</title>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="service">
+  <div id="site-header"></div>
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-header-eyebrow" data-i18n="service_hero_tag"></span>
+      <h1 data-i18n="service_hero_title"></h1>
+      <p data-i18n="service_hero_sub"></p>
+    </div>
+  </div>
+  <div id="info-strip-container"></div>
+
+  <section class="section" id="velos">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Atelier vélos · Route de Mauvoisin 1</span>
+        <h2>Service vélos</h2>
+        <p>Notre mécanicien professionnel intervient sur toutes les marques. Prenez rendez-vous ou déposez votre vélo directement.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem">
+        <div class="card" style="padding:1.8rem"><div style="font-size:2rem;margin-bottom:.8rem">🔧</div><h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Révision complète</h4><p style="font-size:.8rem;color:var(--gray)">Transmission, freins, câbles, roulements — vérification complète.</p></div>
+        <div class="card" style="padding:1.8rem"><div style="font-size:2rem;margin-bottom:.8rem">🛞</div><h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Roues & pneus</h4><p style="font-size:.8rem;color:var(--gray)">Dépannage, montage tubeless, voilage de roues.</p></div>
+        <div class="card" style="padding:1.8rem"><div style="font-size:2rem;margin-bottom:.8rem">🔋</div><h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">E-Bike service</h4><p style="font-size:.8rem;color:var(--gray)">Diagnostic, mise à jour firmware, remplacement batterie.</p></div>
+        <div class="card" style="padding:1.8rem"><div style="font-size:2rem;margin-bottom:.8rem">🔄</div><h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Reprise & cote</h4><p style="font-size:.8rem;color:var(--gray)">Estimation gratuite de votre vélo en vue d'un échange.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-off" id="ski">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Atelier ski · Route de Verbier 22</span>
+        <h2>Service ski</h2>
+        <p>Préparation, fartage et réparation de vos skis avant et pendant la saison.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem">
+        <div class="card" style="padding:1.8rem"><div style="font-size:2rem;margin-bottom:.8rem">🎿</div><h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Préparation de skis</h4><p style="font-size:.8rem;color:var(--gray)">Affûtage des carres, fartage, polissage — préparation pro.</p></div>
+        <div class="card" style="padding:1.8rem"><div style="font-size:2rem;margin-bottom:.8rem">🔩</div><h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Fixations</h4><p style="font-size:.8rem;color:var(--gray)">Montage, réglage DIN, contrôle de sécurité certifié.</p></div>
+        <div class="card" style="padding:1.8rem"><div style="font-size:2rem;margin-bottom:.8rem">🛠️</div><h4 style="font-size:.9rem;font-weight:800;margin-bottom:.4rem">Réparations</h4><p style="font-size:.8rem;color:var(--gray)">Réparation semelle, résine epoxy, injection de carres.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="js/i18n.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const strip = document.getElementById('info-strip-container');
+      if (strip) strip.innerHTML = renderInfoStrip();
+      applyI18n();
+    });
+  </script>
+</body>
+</html>

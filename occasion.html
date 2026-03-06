@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Occasion & Vente – Happy Sports</title>
+  <meta name="description" content="Vélos, skis et équipements à vendre chez Happy Sports. Réservez en ligne, venez voir en magasin dans les 5 jours."/>
+  <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body data-page="occasion">
+
+  <div id="site-header"></div>
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <span class="page-header-eyebrow" data-i18n="occasion_tag"></span>
+      <h1 data-i18n="occasion_title"></h1>
+      <p data-i18n="occasion_sub"></p>
+    </div>
+  </div>
+
+  <!-- INFO STRIP -->
+  <div id="info-strip-container"></div>
+
+  <!-- PRODUCTS SECTION -->
+  <section class="section">
+    <div class="container">
+      <div class="filter-bar" id="filter-bar">
+        <button class="filter-btn active" data-filter="all"         onclick="filterProducts('all',this)"         data-i18n="filter_all"></button>
+        <button class="filter-btn"         data-filter="velo"        onclick="filterProducts('velo',this)"        data-i18n="filter_bike"></button>
+        <button class="filter-btn"         data-filter="vtt"         onclick="filterProducts('vtt',this)"         data-i18n="filter_vtt"></button>
+        <button class="filter-btn"         data-filter="ebike"       onclick="filterProducts('ebike',this)"       data-i18n="filter_ebike"></button>
+        <button class="filter-btn"         data-filter="ski"         onclick="filterProducts('ski',this)"         data-i18n="filter_ski"></button>
+        <button class="filter-btn"         data-filter="accessoire"  onclick="filterProducts('accessoire',this)"  data-i18n="filter_acc"></button>
+      </div>
+
+      <div class="product-grid" id="product-grid"></div>
+      <p id="no-results" style="display:none;color:var(--gray);text-align:center;padding:3rem 0;" data-i18n="no_results"></p>
+    </div>
+  </section>
+
+  <!-- RESERVATION MODAL -->
+  <div class="modal-overlay" id="reserve-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+
+      <!-- Form -->
+      <div id="modal-form">
+        <h2 class="modal-title" data-i18n="modal_title"></h2>
+        <p class="modal-product" id="modal-product-label"></p>
+        <div class="modal-info-box">
+          <strong data-i18n="modal_info_title"></strong><br/>
+          <span data-i18n="modal_info_text"></span>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_name"></label>
+          <input type="text"  id="r-name"  class="form-control" data-i18n-ph="form_name_ph"/>
+          <span class="form-error">Champ requis</span>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_email"></label>
+          <input type="email" id="r-email" class="form-control" data-i18n-ph="form_email_ph"/>
+          <span class="form-error">E-mail invalide</span>
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_phone"></label>
+          <input type="tel"   id="r-phone" class="form-control" data-i18n-ph="form_phone_ph"/>
+          <span class="form-error">Champ requis</span>
+        </div>
+        <button class="btn btn-primary btn-full" onclick="submitReservation()" data-i18n="form_submit"></button>
+      </div>
+
+      <!-- Success -->
+      <div id="modal-success" class="modal-success" style="display:none">
+        <div class="success-icon">✅</div>
+        <h3 data-i18n="success_title"></h3>
+        <p data-i18n="success_text"></p>
+        <button class="btn btn-outline" style="margin-top:1.5rem" onclick="closeModal()">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="site-footer"></div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/components.js"></script>
+  <script>
+    let currentFilter = 'all';
+    let selectedProductId = null;
+
+    // ── Category label ──────────────────────────────────────
+    function catLabel(cat) {
+      const map = { velo:'cat_velo', vtt:'cat_vtt', ebike:'cat_ebike', ski:'cat_ski', accessoire:'cat_accessoire' };
+      return t(map[cat] || cat);
+    }
+
+    // ── Render products ─────────────────────────────────────
+    function renderProducts(filter) {
+      currentFilter = filter;
+      const products = HS_DATA.getProducts();
+      const list = filter === 'all' ? products : products.filter(p => p.cat === filter);
+      const grid = document.getElementById('product-grid');
+      const noRes = document.getElementById('no-results');
+
+      if (!list.length) {
+        grid.innerHTML = '';
+        noRes.style.display = 'block';
+        return;
+      }
+      noRes.style.display = 'none';
+
+      grid.innerHTML = list.map(p => {
+        const discount = p.original ? Math.round((1 - p.price / p.original) * 100) : 0;
+        const savings  = p.original ? p.original - p.price : 0;
+        return `
+          <div class="product-card ${p.reserved ? 'is-reserved' : ''}">
+            <div class="product-img">
+              <span>${p.emoji || '🚲'}</span>
+              ${discount > 0 ? `<span class="badge badge-discount">-${discount}%</span>` : ''}
+              ${p.isNew    ? `<span class="badge badge-new" data-i18n="badge_new">${t('badge_new')}</span>` : ''}
+              ${p.reserved ? `<span class="badge badge-reserved">${t('btn_reserved')}</span>` : ''}
+            </div>
+            <div class="product-body">
+              <div class="product-cat">${catLabel(p.cat)}</div>
+              <div class="product-name">${p.name}</div>
+              <div class="product-desc">${p.desc}</div>
+              <div class="product-price">
+                <span class="price-current">CHF ${p.price.toLocaleString('fr-CH')}.—</span>
+                ${p.original ? `<span class="price-original">CHF ${p.original.toLocaleString('fr-CH')}.—</span>
+                  <span class="price-saving">–CHF ${savings.toLocaleString('fr-CH')}</span>` : ''}
+              </div>
+              ${p.reserved
+                ? `<button class="btn-reserved">${t('btn_reserved')}</button>`
+                : `<button class="btn-reserve" onclick="openModal(${p.id})">${t('btn_reserve')}</button>`
+              }
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    // ── Filter ──────────────────────────────────────────────
+    function filterProducts(filter, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderProducts(filter);
+    }
+
+    // ── Modal ───────────────────────────────────────────────
+    function openModal(id) {
+      selectedProductId = id;
+      const p = HS_DATA.getProducts().find(x => x.id === id);
+      document.getElementById('modal-product-label').textContent =
+        `${p.name} — CHF ${p.price.toLocaleString('fr-CH')}.—`;
+      document.getElementById('modal-form').style.display = '';
+      document.getElementById('modal-success').style.display = 'none';
+      document.getElementById('r-name').value  = '';
+      document.getElementById('r-email').value = '';
+      document.getElementById('r-phone').value = '';
+      document.querySelectorAll('.form-control').forEach(el => el.classList.remove('error'));
+      document.getElementById('reserve-modal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('reserve-modal').classList.remove('open');
+      selectedProductId = null;
+    }
+
+    document.addEventListener('click', e => {
+      if (e.target === document.getElementById('reserve-modal')) closeModal();
+    });
+
+    // ── Submit ──────────────────────────────────────────────
+    function submitReservation() {
+      const name  = document.getElementById('r-name').value.trim();
+      const email = document.getElementById('r-email').value.trim();
+      const phone = document.getElementById('r-phone').value.trim();
+      let valid = true;
+
+      [['r-name', name], ['r-email', email], ['r-phone', phone]].forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (!val) { el.classList.add('error'); valid = false; }
+        else el.classList.remove('error');
+      });
+
+      if (!valid) return;
+
+      const today   = new Date();
+      const todayStr = HS_DATA.formatDate(today);
+
+      HS_DATA.addReservation({
+        productId:   selectedProductId,
+        productName: HS_DATA.getProducts().find(p => p.id === selectedProductId)?.name || '',
+        client: name, email, phone,
+        date:    todayStr,
+        expires: HS_DATA.expiryDate(todayStr, 5)
+      });
+
+      document.getElementById('modal-form').style.display = 'none';
+      document.getElementById('modal-success').style.display = 'block';
+      renderProducts(currentFilter);
+    }
+
+    // ── Init ─────────────────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+      const strip = document.getElementById('info-strip-container');
+      if (strip) strip.innerHTML = renderInfoStrip();
+      applyI18n();
+      renderProducts('all');
+    });
+  </script>
+</body>
+</html>
