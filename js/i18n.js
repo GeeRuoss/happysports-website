@@ -7,6 +7,7 @@ window.HS_LANG = localStorage.getItem('hs_lang') || 'fr';
 window.HS_STRINGS = {
   fr: {
     /* Nav */
+    nav_home:     'Accueil',
     nav_services: 'Services',
     nav_occasion: 'Occasion',
     nav_contact:  'Contact',
@@ -110,6 +111,7 @@ window.HS_STRINGS = {
     admin_stats_exp: 'Expirées',
   },
   en: {
+    nav_home:     'Home',
     nav_services: 'Services',
     nav_occasion: 'Used gear',
     nav_contact:  'Contact',

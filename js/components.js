@@ -7,6 +7,7 @@ const base = window.location.pathname.includes('/admin/') ? '../' : '';
 
 function renderNav(activePage) {
   const pages = [
+    { key: 'home',     href: 'index.html',    label: 'nav_home'     },
     { key: 'services', href: 'services.html', label: 'nav_services' },
     { key: 'occasion', href: 'occasion.html', label: 'nav_occasion' },
     { key: 'contact',  href: 'contact.html',  label: 'nav_contact'  },
