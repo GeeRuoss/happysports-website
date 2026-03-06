@@ -8,18 +8,21 @@ function renderNav(activePage) {
     { key: 'occasion', href: 'occasion.html', label: 'nav_occasion' },
     { key: 'contact',  href: 'contact.html',  label: 'nav_contact'  },
   ];
+  const isAdmin = window.location.pathname.includes('/admin/');
+  const base = isAdmin ? '../' : '';
+
   const links = pages.map(p =>
-    `<a href="${p.href}" class="${activePage === p.key ? 'active' : ''}" data-i18n="${p.label}"></a>`
+    `<a href="${base}${p.href}" class="${activePage === p.key ? 'active' : ''}" data-i18n="${p.label}"></a>`
   ).join('');
   const mobileLinks = pages.map(p =>
-    `<a href="${p.href}" class="${activePage === p.key ? 'active' : ''}" data-i18n="${p.label}"></a>`
+    `<a href="${base}${p.href}" class="${activePage === p.key ? 'active' : ''}" data-i18n="${p.label}"></a>`
   ).join('');
 
   return `
   <nav class="nav">
     <div class="container nav-inner">
-      <a href="services.html" class="nav-logo">
-        <img src="assets/Logo+Happy+Sport-1920w.jpg" alt="Happy Sports">
+      <a href="${base}index.html" class="nav-logo">
+        <img src="${base}assets/Logo+Happy+Sport-1920w.jpg" alt="Happy Sports">
       </a>
       <div class="nav-links">${links}</div>
       <div class="nav-right">
@@ -62,23 +65,24 @@ function renderFooter() {
       <div class="footer-inner">
         <div>
           <div class="footer-logo">
-            <img src="assets/Logo+Happy+Sport-1920w.jpg" alt="Happy Sports">
+            <img src="${base}assets/Logo+Happy+Sport-1920w.jpg" alt="Happy Sports">
           </div>
           <p class="footer-brand-desc" data-i18n="footer_desc"></p>
         </div>
         <div class="footer-col">
           <h4 data-i18n="footer_nav"></h4>
-          <a href="services.html" data-i18n="nav_services"></a>
-          <a href="occasion.html" data-i18n="nav_occasion"></a>
-          <a href="contact.html" data-i18n="nav_contact"></a>
-          <a href="admin/index.html" data-i18n="footer_admin"></a>
+          <a href="${base}index.html">Accueil</a>
+          <a href="${base}services.html" data-i18n="nav_services"></a>
+          <a href="${base}occasion.html" data-i18n="nav_occasion"></a>
+          <a href="${base}contact.html" data-i18n="nav_contact"></a>
+          <a href="${base}admin/index.html" data-i18n="footer_admin"></a>
         </div>
         <div class="footer-col">
           <h4 data-i18n="footer_contact"></h4>
           <a href="tel:+41277761544">+41 27 776 15 44</a>
           <a href="tel:+41797367373">+41 79 736 73 73</a>
           <a href="mailto:happysports@netplus.ch">happysports@netplus.ch</a>
-          <a href="contact.html">Route de Verbier 22, Le Châble</a>
+          <a href="${base}contact.html">Route de Verbier 22, Le Châble</a>
         </div>
       </div>
       <div class="footer-bottom">
